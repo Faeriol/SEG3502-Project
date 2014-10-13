@@ -13,3 +13,7 @@ hs_err_pid*
 
 # Visio temp files
 ~$$*
+
+*umbs.db
+*ds_store
+*DS_STORE
