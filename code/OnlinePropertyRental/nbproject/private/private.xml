@@ -3,28 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/index.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/CreateAccount.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/BrowseProperty.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/ViewVisitingList.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/Login.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/OwnerProperties.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/VisitingList.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/AddProperty.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/web/UpdateProperty.xhtml</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/System.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Agency.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Service.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/User.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Account.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Agent.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Customer.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Owner.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Rental/Property.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Rental/Lease.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Rental/Preferences.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Finance/Transaction.java</file>
-            <file>file:/Users/faeriol/Learn/SEG3502/code/OnlinePropertyRental/src/java/org/opr/Beans/Finance/Information.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Rental/PropertyT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/ServiceT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Rental/Preferences.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Rental/LeaseT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Rental/PreferencesT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Agency.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/UserT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Finance/Information.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Account.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/OwnerT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Visit.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Agent.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Finance/TransactionT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Service.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Rental/Property.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/DBHelper.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Finance/Transaction.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/utils/Picture.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/util/AddressT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/util/Address.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Owner.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/AgentT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/AgencyT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Rental/Lease.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Finance/InformationT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/User.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/CustomerT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/VisitT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/AccountT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/System.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Customer.java</file>
         </group>
     </open-files>
 </project-private>
