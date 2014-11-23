@@ -1,5 +1,6 @@
 package org.opr.Beans.Users;
 
+import java.util.List;
 import org.opr.Beans.Rental.*;
 
 /**
@@ -10,8 +11,11 @@ import org.opr.Beans.Rental.*;
  */
 public class Customer extends User {
     
-    private Preferences housingPreference;
-    private Property[]  visitList;
-    private Lease       currentLease;
+    private Preferences     housingPreference;
+    private List<Property>  visitList;
+    private Lease           currentLease;
     
+    public void addProperty(Property property){
+        visitList.add(property);
+    }
 }
