@@ -1,9 +1,15 @@
 package org.opr.Beans.Users;
 
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.Users.AccountT;
+
 /**
  *
  * @author faeriol
  */
+@Named(value = "account")
+@RequestScoped
 public class Account {
     private String firstName, lastName, email, userName, password;
     private int type; // What is this supposed to be???

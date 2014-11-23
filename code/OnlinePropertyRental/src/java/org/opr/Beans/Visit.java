@@ -3,11 +3,16 @@ package org.opr.Beans;
 import java.util.Date;
 import org.opr.Beans.Users.Agent;
 import org.opr.Beans.Users.Customer;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.VisitT;
 
 /**
  *
  * @author faeriol
  */
+@Named(value = "visit")
+@RequestScoped
 public class Visit {
     private Date     date;
     private Customer prospect;

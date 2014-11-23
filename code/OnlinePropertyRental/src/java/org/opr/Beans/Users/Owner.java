@@ -2,11 +2,16 @@ package org.opr.Beans.Users;
 
 import java.util.List;
 import org.opr.Beans.Rental.Property;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.Users.OwnerT;
 
 /**
  *
  * @author faeriol
  */
+@Named(value = "owner")
+@RequestScoped
 public class Owner extends User {
     private List<Property> properties;
     

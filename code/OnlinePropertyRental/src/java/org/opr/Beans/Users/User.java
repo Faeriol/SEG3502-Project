@@ -1,9 +1,15 @@
 package org.opr.Beans.Users;
 
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.Users.UserT;
+
 /**
  *
  * @author faeriol
  */
+@Named(value = "user")
+@RequestScoped
 public class User {
     
     private Account userAccount;

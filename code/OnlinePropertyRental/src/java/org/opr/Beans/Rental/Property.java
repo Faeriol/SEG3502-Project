@@ -1,14 +1,20 @@
 package org.opr.Beans.Rental;
 
 import java.util.List;
+import org.opr.Beans.util.Address;
 import org.opr.utils.Picture;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.Rental.PropertyT;
 
 /**
  *
  * @author faeriol
  */
+@Named(value = "property")
+@RequestScoped
 public class Property {
-    private String  address;
+    private Address  address;
     private List<Picture> photos;
     private String  type;
     private short   nbBedrooms, nbBathrooms, nbOthers;
@@ -17,14 +23,14 @@ public class Property {
     /**
      * @return the address
      */
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
     /**
      * @param address the address to set
      */
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.opr.Beans;
+
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.ServiceT;
 
 /**
  *
  * @author faeriol
  */
+@Named(value = "service")
+@RequestScoped
 public class Service {
     private String name;
 

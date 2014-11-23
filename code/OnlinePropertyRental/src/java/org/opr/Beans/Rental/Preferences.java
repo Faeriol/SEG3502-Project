@@ -1,9 +1,15 @@
 package org.opr.Beans.Rental;
 
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import org.opr.Persistance.Rental.PreferencesT;
+
 /**
  *
  * @author faeriol
  */
+@Named(value = "preferences")
+@RequestScoped
 public class Preferences {
     private short  nbBathrooms, nbBedrooms, nbOther;
     private int    minRent, maxRent;
