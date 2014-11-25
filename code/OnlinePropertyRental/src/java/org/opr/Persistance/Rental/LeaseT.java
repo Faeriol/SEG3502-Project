@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Beans.Rental.Lease;
 import org.opr.Persistance.Users.CustomerT;
 
 /**
@@ -116,5 +117,15 @@ public class LeaseT implements Serializable {
      */
     public void setRENT(float RENT) {
         this.RENT = RENT;
+    }
+    
+    public boolean matches(Lease lease) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
 }

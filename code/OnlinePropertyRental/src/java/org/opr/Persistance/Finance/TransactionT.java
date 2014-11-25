@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Beans.Finance.Transaction;
 import org.opr.Persistance.AgencyT;
 import org.opr.Persistance.Users.UserT;
 
@@ -102,6 +103,16 @@ public class TransactionT implements Serializable {
      */
     public void setAGENCY(AgencyT AGENCY) {
         this.AGENCY = AGENCY;
+    }
+    
+    public boolean matches(Transaction transaction) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
 
 }

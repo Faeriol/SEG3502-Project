@@ -1,6 +1,6 @@
 package org.opr.Beans;
 
-import java.util.Date;
+import java.sql.Date;
 import org.opr.Beans.Users.Agent;
 import org.opr.Beans.Users.Customer;
 import javax.inject.Named;

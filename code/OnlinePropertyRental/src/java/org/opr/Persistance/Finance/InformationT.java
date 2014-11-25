@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.opr.Beans.Finance.Information;
+import org.opr.Beans.util.Picture;
 
 /**
  *
@@ -112,6 +114,16 @@ public class InformationT implements Serializable {
      */
     public void setYEAR_EXP(short YEAR_EXP) {
         this.YEAR_EXP = YEAR_EXP;
+    }
+    
+    public boolean matches(Information information) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
 
 }

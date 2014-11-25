@@ -2,7 +2,7 @@ package org.opr.Beans.Rental;
 
 import java.util.List;
 import org.opr.Beans.util.Address;
-import org.opr.utils.Picture;
+import org.opr.Beans.util.Picture;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Persistance.Rental.PropertyT;

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.opr.Beans.Users.Owner;
 import org.opr.Persistance.Rental.PropertyT;
 
 /**
@@ -34,6 +35,16 @@ public class OwnerT extends UserT implements Serializable {
      */
     public void setPROPERTIES(List<PropertyT> PROPERTIES) {
         this.PROPERTIES = PROPERTIES;
+    }
+    
+    public boolean matches(Owner owner) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
     
 }

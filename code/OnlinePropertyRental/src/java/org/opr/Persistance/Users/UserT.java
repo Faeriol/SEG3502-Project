@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Beans.Users.User;
 
 /**
  *
@@ -50,4 +51,15 @@ public class UserT implements Serializable {
     public void setACCOUNT(AccountT ACCOUNT) {
         this.ACCOUNT = ACCOUNT;
     }
+    
+    public boolean matches(User user) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
+    }
+    
 }

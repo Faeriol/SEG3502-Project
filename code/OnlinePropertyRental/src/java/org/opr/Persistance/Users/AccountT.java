@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.opr.Beans.Users.Account;
 
 /**
  *
@@ -117,6 +118,16 @@ public class AccountT implements Serializable {
      */
     public void setPASSWORD(String PASSWORD) {
         this.PASSWORD = PASSWORD;
+    }
+    
+    public boolean matches(Account account) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
     
 }

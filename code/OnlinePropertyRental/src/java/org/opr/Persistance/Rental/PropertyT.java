@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Beans.Rental.Property;
 import org.opr.Persistance.Users.OwnerT;
 import org.opr.Persistance.VisitT;
 import org.opr.Persistance.util.AddressT;
@@ -182,6 +183,16 @@ public class PropertyT implements Serializable {
      */
     public void setPictures(List<PictureT> pictures) {
         this.pictures = pictures;
+    }
+    
+    public boolean matches(Property property) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
     
 }

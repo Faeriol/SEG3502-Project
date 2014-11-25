@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.opr.Beans.util.Address;
 
 /**
  * Just something to represent an address...
@@ -153,5 +154,14 @@ public class AddressT implements Serializable{
         this.ADDRESS_ID = ADDRESS_ID;
     }
     
+    public boolean matches(Address address) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
+    }
 
 }

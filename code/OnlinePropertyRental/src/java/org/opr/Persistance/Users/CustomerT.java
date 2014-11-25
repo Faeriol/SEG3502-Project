@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Beans.Users.Customer;
 import org.opr.Persistance.Rental.LeaseT;
 import org.opr.Persistance.Rental.PreferencesT;
 import org.opr.Persistance.Rental.PropertyT;
@@ -90,5 +91,15 @@ public class CustomerT extends UserT implements Serializable {
      */
     public void setVisitTs(List<VisitT> visitTs) {
         this.visitTs = visitTs;
+    }
+    
+    public boolean matches(Customer customer) {
+        // IMPLEMENT!!!
+        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
+        //    return false;
+        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+        //        return false;
+        //} 
+        return true;
     }
 }

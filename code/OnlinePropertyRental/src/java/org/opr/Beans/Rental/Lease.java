@@ -1,6 +1,6 @@
 package org.opr.Beans.Rental;
 
-import java.util.Date;
+import java.sql.Date;
 import org.opr.Beans.Users.Customer;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
