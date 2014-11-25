@@ -1,6 +1,7 @@
 package org.opr.Beans.Rental;
 
 import java.sql.Date;
+import java.util.List;
 import org.opr.Beans.Users.Customer;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -19,6 +20,8 @@ public class Lease {
     private Customer renter;
     private Property leasedProperty;
     private float rent;
+    
+    private List<LeaseT> lookupResults;
 
     /**
      * @return the rentalDate
@@ -88,6 +91,22 @@ public class Lease {
      */
     public void setRent(float rent) {
         this.rent = rent;
+    }
+    
+    public void setLookupResults(List<LeaseT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<LeaseT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
     }
     
 }

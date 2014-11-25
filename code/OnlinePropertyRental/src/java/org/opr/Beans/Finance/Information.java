@@ -1,5 +1,6 @@
 package org.opr.Beans.Finance;
 
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Persistance.Finance.InformationT;
@@ -17,6 +18,8 @@ public class Information {
     private String primaryCardHolder;
     private short  monthExp;
     private short  yearExp;
+    
+    private List<InformationT> lookupResults;
 
     /**
      * @return the creditCardType
@@ -86,6 +89,22 @@ public class Information {
      */
     public void setYearExp(short yearExp) {
         this.yearExp = yearExp;
+    }
+    
+    public void setLookupResults(List<InformationT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<InformationT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
     }
     
 }

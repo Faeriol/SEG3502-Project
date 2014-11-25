@@ -20,6 +20,8 @@ public class Address {
     private String ville;
     private String province;
     private String postalCode;
+    
+    private List<AddressT> lookupResults;
 
     /**
      * @return the adressID
@@ -119,5 +121,20 @@ public class Address {
         this.postalCode = postalCode;
     }
     
+    public void setLookupResults(List<AddressT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<AddressT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
+    }
     
 }

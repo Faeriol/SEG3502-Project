@@ -1,5 +1,6 @@
 package org.opr.Beans.Finance;
 
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Beans.Agency;
@@ -18,6 +19,8 @@ public class Transaction {
     private String financialInstitution;
     private User   user;
     private Agency agency;
+    
+    private List<TransactionT> lookupResults;
 
     /**
      * @return the amount
@@ -73,6 +76,22 @@ public class Transaction {
      */
     public void setAgency(Agency agency) {
         this.agency = agency;
+    }
+    
+    public void setLookupResults(List<TransactionT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<TransactionT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
     }
     
 }

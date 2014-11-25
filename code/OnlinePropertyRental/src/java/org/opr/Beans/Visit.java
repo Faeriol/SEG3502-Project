@@ -1,6 +1,7 @@
 package org.opr.Beans;
 
 import java.sql.Date;
+import java.util.List;
 import org.opr.Beans.Users.Agent;
 import org.opr.Beans.Users.Customer;
 import javax.inject.Named;
@@ -19,6 +20,7 @@ public class Visit {
     private Customer prospect;
     private Agent    rep;
     private Property property;
+    private List<VisitT> lookupResults;
 
     /**
      * @return the date
@@ -62,6 +64,21 @@ public class Visit {
         this.rep = rep;
     }
     
+    public void setLookupResults(List<VisitT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<VisitT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
+    }
     
 }
 

@@ -20,6 +20,8 @@ public class Customer extends User {
     private List<Property>  visitList;
     private Lease           currentLease;
     
+    private List<CustomerT> lookupResults;
+    
     public void addProperty(Property property){
         getVisitList().add(property);
     }
@@ -64,5 +66,21 @@ public class Customer extends User {
      */
     public void setCurrentLease(Lease currentLease) {
         this.currentLease = currentLease;
+    }
+    
+    public void setLookupResults(List<CustomerT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<CustomerT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
     }
 }

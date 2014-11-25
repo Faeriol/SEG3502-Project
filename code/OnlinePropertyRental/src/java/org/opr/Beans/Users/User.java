@@ -1,5 +1,6 @@
 package org.opr.Beans.Users;
 
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Persistance.Users.UserT;
@@ -15,6 +16,9 @@ import org.opr.Persistance.Users.UserT;
 public class User {
     
     private Account userAccount;
+    
+    // Will cheaply manage name clash... We never get a list of straight Users
+    //private List<UserT> lookupResults;
 
     /**
      * @return the userAccount
@@ -29,5 +33,24 @@ public class User {
     public void setUserAccount(Account userAccount) {
         this.userAccount = userAccount;
     }
+    
+    
+    //Getting name clash for 2 below
+    //Obvious answer is to 
+    //public void setLookupResults(List<UserT> results) {
+    //    this.lookupResults = results;
+    //}
+    
+    //public List<UserT> getLookupResults() {
+    //    return lookupResults;
+    //}
+    // show results if any
+    //public boolean getShowResults() {
+    //    return (lookupResults != null) && !lookupResults.isEmpty();
+    //}
+    // show message if no result
+    //public boolean getShowMessage() {
+    //    return (lookupResults != null) && lookupResults.isEmpty();
+    //}
     
 }

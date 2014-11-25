@@ -1,5 +1,6 @@
 package org.opr.Beans.Rental;
 
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Persistance.Rental.PreferencesT;
@@ -15,6 +16,8 @@ public class Preferences {
     private int    minRent, maxRent;
     private String location;
 
+    private List<PreferencesT> lookupResults;
+    
     /**
      * @return the nbBathrooms
      */
@@ -99,6 +102,20 @@ public class Preferences {
         this.location = location;
     }
     
+    public void setLookupResults(List<PreferencesT> results) {
+        this.lookupResults = results;
+    }
     
+    public List<PreferencesT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
+    }
     
 }

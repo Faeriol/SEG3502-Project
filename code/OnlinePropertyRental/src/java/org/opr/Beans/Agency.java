@@ -1,5 +1,6 @@
 package org.opr.Beans;
 
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Beans.util.Address;
@@ -14,6 +15,7 @@ import org.opr.Persistance.AgencyT;
 public class Agency {
     private String name;
     private Address address;
+    private List<AgencyT> lookupResults;
 
     /**
      * @return the name
@@ -42,5 +44,24 @@ public class Agency {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
+ 
+    public void setLookupResults(List<AgencyT> results) {
+        this.lookupResults = results;
+    }
+
+    public List<AgencyT> getLookupResults() {
+        return lookupResults;
+    }
+
+    // show results if any
+
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+
+    // show message if no result
+
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
+    }
 }

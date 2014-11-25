@@ -17,3 +17,4 @@ hs_err_pid*
 *umbs.db
 *ds_store
 *DS_STORE
+/code/OnlinePropertyRental/build/

@@ -19,6 +19,8 @@ public class Property {
     private String  type;
     private short   nbBedrooms, nbBathrooms, nbOthers;
     private float     rent;
+    
+    private List<PropertyT> lookupResults;
 
     /**
      * @return the address
@@ -120,6 +122,22 @@ public class Property {
      */
     public void setRent(float rent) {
         this.rent = rent;
+    }
+    
+    public void setLookupResults(List<PropertyT> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<PropertyT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
     }
     
 }

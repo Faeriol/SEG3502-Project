@@ -1,5 +1,6 @@
 package org.opr.Beans.Users;
 
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.opr.Persistance.Users.AccountT;
@@ -14,6 +15,8 @@ public class Account {
     private String firstName, lastName, email, userName, password;
     private int type; // What is this supposed to be???
 
+    private List<AccountT> lookupResults;
+    
     /**
      * @return the firstName
      */
@@ -98,6 +101,20 @@ public class Account {
         this.type = type;
     }
     
+    public void setLookupResults(List<AccountT> results) {
+        this.lookupResults = results;
+    }
     
+    public List<AccountT> getLookupResults() {
+        return lookupResults;
+    }
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
+    }
     
 }
