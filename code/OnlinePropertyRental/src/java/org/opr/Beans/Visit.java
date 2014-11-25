@@ -16,6 +16,8 @@ import org.opr.Persistance.VisitT;
 @Named(value = "visit")
 @RequestScoped
 public class Visit {
+    
+    private String ID;
     private Date     date;
     private Customer prospect;
     private Agent    rep;
@@ -78,6 +80,20 @@ public class Visit {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
 }

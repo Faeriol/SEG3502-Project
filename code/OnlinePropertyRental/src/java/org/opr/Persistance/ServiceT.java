@@ -19,7 +19,7 @@ public class ServiceT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int SERVICE_ID;
+    private String SERVICE_ID;
     private String NAME;
     
     @Override
@@ -30,14 +30,14 @@ public class ServiceT implements Serializable {
     /**
      * @return the SERVICE_ID
      */
-    public int getSERVICE_ID() {
+    public String getSERVICE_ID() {
         return SERVICE_ID;
     }
 
     /**
      * @param SERVICE_ID the SERVICE_ID to set
      */
-    public void setSERVICE_ID(int SERVICE_ID) {
+    public void setSERVICE_ID(String SERVICE_ID) {
         this.SERVICE_ID = SERVICE_ID;
     }
 
@@ -55,14 +55,20 @@ public class ServiceT implements Serializable {
         this.NAME = NAME;
     }
     
-    public boolean matches(Service service) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Service bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getSERVICE_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
+    }
+    
+        @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getSERVICE_ID().hashCode();
+        return hash;
     }
 
 }

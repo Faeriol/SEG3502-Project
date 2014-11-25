@@ -20,7 +20,7 @@ public class InformationT implements Serializable {
  
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int INFORMATION_ID;
+    private String INFORMATION_ID;
     private String CREDIT_CARD_TYPE;
     private String CREDIT_CARD_NUMBER;
     private String PRIMARY_CARD_HOLDER;
@@ -35,14 +35,14 @@ public class InformationT implements Serializable {
     /**
      * @return the INFORMATION_ID
      */
-    public int getINFORMATION_ID() {
+    public String getINFORMATION_ID() {
         return INFORMATION_ID;
     }
 
     /**
      * @param INFORMATION_ID the INFORMATION_ID to set
      */
-    public void setINFORMATION_ID(int INFORMATION_ID) {
+    public void setINFORMATION_ID(String INFORMATION_ID) {
         this.INFORMATION_ID = INFORMATION_ID;
     }
 
@@ -116,14 +116,19 @@ public class InformationT implements Serializable {
         this.YEAR_EXP = YEAR_EXP;
     }
     
-    public boolean matches(Information information) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Information bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getINFORMATION_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getINFORMATION_ID().hashCode();
+        return hash;
+    }
 }

@@ -18,7 +18,7 @@ import org.opr.Beans.Rental.Preferences;
 public class PreferencesT implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int PREFERENCE_ID;
+    private String PREFERENCE_ID;
     private short NB_BATHROOMS, NB_BEDROOMS, NB_OTHER;
     private String LOCATION;
     
@@ -30,14 +30,14 @@ public class PreferencesT implements Serializable {
     /**
      * @return the PREFERENCE_ID
      */
-    public int getPREFERENCE_ID() {
+    public String getPREFERENCE_ID() {
         return PREFERENCE_ID;
     }
 
     /**
      * @param PREFERENCE_ID the PREFERENCE_ID to set
      */
-    public void setPREFERENCE_ID(int PREFERENCE_ID) {
+    public void setPREFERENCE_ID(String PREFERENCE_ID) {
         this.PREFERENCE_ID = PREFERENCE_ID;
     }
 
@@ -97,13 +97,19 @@ public class PreferencesT implements Serializable {
         this.LOCATION = LOCATION;
     }
     
-    public boolean matches(Preferences preferences) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Preferences bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getPREFERENCE_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getPREFERENCE_ID().hashCode();
+        return hash;
     }
 }

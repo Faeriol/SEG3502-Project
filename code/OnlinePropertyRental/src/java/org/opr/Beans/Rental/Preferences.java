@@ -12,6 +12,7 @@ import org.opr.Persistance.Rental.PreferencesT;
 @Named(value = "preferences")
 @RequestScoped
 public class Preferences {
+    private String ID;
     private short  nbBathrooms, nbBedrooms, nbOther;
     private int    minRent, maxRent;
     private String location;
@@ -116,6 +117,20 @@ public class Preferences {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
 }

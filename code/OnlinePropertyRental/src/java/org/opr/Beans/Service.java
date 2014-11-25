@@ -12,6 +12,8 @@ import org.opr.Persistance.ServiceT;
 @Named(value = "service")
 @RequestScoped
 public class Service {
+    
+    private String ID;
     private String name;
     private List<ServiceT> lookupResults;
 
@@ -43,5 +45,19 @@ public class Service {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

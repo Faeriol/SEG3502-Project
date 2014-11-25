@@ -15,6 +15,7 @@ import org.opr.Persistance.Users.UserT;
 @RequestScoped
 public class User {
     
+    private String ID;
     private Account userAccount;
     
     // Will cheaply manage name clash... We never get a list of straight Users
@@ -52,5 +53,19 @@ public class User {
     //public boolean getShowMessage() {
     //    return (lookupResults != null) && lookupResults.isEmpty();
     //}
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
+    }
     
 }

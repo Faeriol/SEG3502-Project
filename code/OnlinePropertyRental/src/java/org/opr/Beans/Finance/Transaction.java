@@ -14,6 +14,7 @@ import org.opr.Persistance.Finance.TransactionT;
 @Named(value = "transaction")
 @RequestScoped
 public class Transaction {
+    private String ID;
  
     private float  amount;
     private String financialInstitution;
@@ -92,6 +93,20 @@ public class Transaction {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
 }

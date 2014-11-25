@@ -1,6 +1,7 @@
 package org.opr.Persistance.util;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,13 +49,18 @@ public class PictureT implements Serializable{
         this.PICTURE_DATA = PICTURE_DATA;
     }
 
-    public boolean matches(Picture picture) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
-        //        return false;
-        //} 
-        return true;
+    public boolean matches(Picture picture) { // Pictures are matching if byte arrays match
+        if (null!=picture.getID() && !"".equals(picture.getID()) && !this.getPICTURE_ID().trim().equals(picture.getID().trim())) {
+            return false;
+        }
+        if (picture.getData().length==0) { return false; } 
+        return Arrays.equals(this.getPICTURE_DATA(), picture.getData());
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getPICTURE_ID().hashCode();
+        return hash;
     }
 }

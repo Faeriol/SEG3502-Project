@@ -11,6 +11,7 @@ import org.opr.Persistance.util.PictureT;
  * @author faeriol
  */
 public class Picture {
+    private String ID;
     private byte [] data;
     
     private List<PictureT> lookupResults;
@@ -26,7 +27,7 @@ public class Picture {
     /**
      * @param data the data to set
      */
-    public void setData(byte[] data) { this.data = data; }
+    public void setData(byte[] data) { this.setData(data); }
     
     public void setLookupResults(List<PictureT> results) {
         this.lookupResults = results;
@@ -37,11 +38,25 @@ public class Picture {
     }
     // show results if any
     public boolean getShowResults() {
-        return (lookupResults != null) && !lookupResults.isEmpty();
+        return (getLookupResults() != null) && !lookupResults.isEmpty();
     }
     // show message if no result
     public boolean getShowMessage() {
-        return (lookupResults != null) && lookupResults.isEmpty();
+        return (getLookupResults() != null) && getLookupResults().isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
 }

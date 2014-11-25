@@ -21,7 +21,7 @@ public class LeaseT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int LEASE_ID;
+    private String LEASE_ID;
     private Date RENTAL_DATE;
     private long RENTAL_TIME;
     @OneToOne
@@ -38,14 +38,14 @@ public class LeaseT implements Serializable {
     /**
      * @return the LEASE_ID
      */
-    public int getLEASE_ID() {
+    public String getLEASE_ID() {
         return LEASE_ID;
     }
 
     /**
      * @param LEASE_ID the LEASE_ID to set
      */
-    public void setLEASE_ID(int LEASE_ID) {
+    public void setLEASE_ID(String LEASE_ID) {
         this.LEASE_ID = LEASE_ID;
     }
 
@@ -119,13 +119,20 @@ public class LeaseT implements Serializable {
         this.RENT = RENT;
     }
     
-    public boolean matches(Lease lease) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Lease bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getLEASE_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getLEASE_ID().hashCode();
+        return hash;
+    }
+    
 }

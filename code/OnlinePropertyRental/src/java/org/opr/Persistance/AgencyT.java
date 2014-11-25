@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Beans.Agency;
 import org.opr.Persistance.util.AddressT;
 
 /**
@@ -18,7 +19,7 @@ import org.opr.Persistance.util.AddressT;
 public class AgencyT implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int AGENCY_ID;
+    private String AGENCY_ID;
     private String NAME;
     @OneToOne
     private AddressT ADDRESS;
@@ -31,14 +32,14 @@ public class AgencyT implements Serializable {
     /**
      * @return the AGENCY_ID
      */
-    public int getAGENCY_ID() {
+    public String getAGENCY_ID() {
         return AGENCY_ID;
     }
 
     /**
      * @param AGENCY_ID the AGENCY_ID to set
      */
-    public void setAGENCY_ID(int AGENCY_ID) {
+    public void setAGENCY_ID(String AGENCY_ID) {
         this.AGENCY_ID = AGENCY_ID;
     }
 
@@ -68,6 +69,22 @@ public class AgencyT implements Serializable {
      */
     public void setADDRESS(AddressT ADDRESS) {
         this.ADDRESS = ADDRESS;
+    }
+    
+        @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getAGENCY_ID().hashCode();
+        return hash;
+    }
+    
+    public boolean matches(Agency bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getAGENCY_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
+        //        return false;
+        //} 
+        return true;
     }
 
 }

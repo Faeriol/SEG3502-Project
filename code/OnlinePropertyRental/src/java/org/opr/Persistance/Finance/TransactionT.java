@@ -22,7 +22,7 @@ public class TransactionT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int TRANSACTION_ID;
+    private String TRANSACTION_ID;
     private float AMOUNT;
     private String FINANCIAL_INSTITUTION;
     @OneToOne
@@ -38,14 +38,14 @@ public class TransactionT implements Serializable {
     /**
      * @return the TRANSACTION_ID
      */
-    public int getTRANSACTION_ID() {
+    public String getTRANSACTION_ID() {
         return TRANSACTION_ID;
     }
 
     /**
      * @param TRANSACTION_ID the TRANSACTION_ID to set
      */
-    public void setTRANSACTION_ID(int TRANSACTION_ID) {
+    public void setTRANSACTION_ID(String TRANSACTION_ID) {
         this.TRANSACTION_ID = TRANSACTION_ID;
     }
 
@@ -105,14 +105,20 @@ public class TransactionT implements Serializable {
         this.AGENCY = AGENCY;
     }
     
-    public boolean matches(Transaction transaction) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Transaction bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getTRANSACTION_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getTRANSACTION_ID().hashCode();
+        return hash;
+    }
+    
 }

@@ -18,21 +18,21 @@ import org.opr.Beans.Users.Account;
 public class AccountT implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int ACCOUNT_ID;
+    private String ACCOUNT_ID;
     private int TYPE;
     private String FIRST_NAME, LAST_NAME, EMAIL, USER_NAME, PASSWORD;
 
     /**
      * @return the ACCOUNT_ID
      */
-    public int getACCOUNT_ID() {
+    public String getACCOUNT_ID() {
         return ACCOUNT_ID;
     }
 
     /**
      * @param ACCOUNT_ID the ACCOUNT_ID to set
      */
-    public void setACCOUNT_ID(int ACCOUNT_ID) {
+    public void setACCOUNT_ID(String ACCOUNT_ID) {
         this.ACCOUNT_ID = ACCOUNT_ID;
     }
 
@@ -120,14 +120,20 @@ public class AccountT implements Serializable {
         this.PASSWORD = PASSWORD;
     }
     
-    public boolean matches(Account account) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Account bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getACCOUNT_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getACCOUNT_ID().hashCode();
+        return hash;
     }
     
 }

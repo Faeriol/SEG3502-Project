@@ -31,7 +31,7 @@ public class PropertyT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int PROPERTY_ID;
+    private String PROPERTY_ID;
     @OneToOne
     private AddressT ADDRESS;
     @OneToMany
@@ -43,14 +43,14 @@ public class PropertyT implements Serializable {
     /**
      * @return the PROPERTY_ID
      */
-    public int getPROPERTY_ID() {
+    public String getPROPERTY_ID() {
         return PROPERTY_ID;
     }
 
     /**
      * @param PROPERTY_ID the PROPERTY_ID to set
      */
-    public void setPROPERTY_ID(int PROPERTY_ID) {
+    public void setPROPERTY_ID(String PROPERTY_ID) {
         this.PROPERTY_ID = PROPERTY_ID;
     }
 
@@ -185,14 +185,20 @@ public class PropertyT implements Serializable {
         this.pictures = pictures;
     }
     
-    public boolean matches(Property property) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(Property bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getPROPERTY_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getPROPERTY_ID().hashCode();
+        return hash;
     }
     
 }

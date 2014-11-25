@@ -20,21 +20,21 @@ public class UserT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int USER_ID;
+    private String USER_ID;
     @OneToOne
     private AccountT ACCOUNT;
 
     /**
      * @return the USER_ID
      */
-    public int getUSER_ID() {
+    public String getUSER_ID() {
         return USER_ID;
     }
 
     /**
      * @param USER_ID the USER_ID to set
      */
-    public void setUSER_ID(int USER_ID) {
+    public void setUSER_ID(String USER_ID) {
         this.USER_ID = USER_ID;
     }
 
@@ -52,14 +52,20 @@ public class UserT implements Serializable {
         this.ACCOUNT = ACCOUNT;
     }
     
-    public boolean matches(User user) {
-        // IMPLEMENT!!!
-        //if (null!=projetData.getProjetID() && !"".equals(projetData.getProjetID()) && !this.getPROJET_ID().trim().equals(projetData.getProjetID().trim())) {
-        //    return false;
-        //} else if (!"".equals(projetData.getNomProjet()) && !this.getNOM_PROJET().trim().equals(projetData.getNomProjet())) {
+    public boolean matches(User bean) {
+        if (null!=bean.getID() && !"".equals(bean.getID()) && !this.getUSER_ID().trim().equals(bean.getID().trim())) {
+            return false;
+        } //else if (!"".equals(bean.getNomProjet()) && !this.getNOM_PROJET().trim().equals(bean.getNomProjet())) { //Needs more
         //        return false;
         //} 
         return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += this.getUSER_ID().hashCode();
+        return hash;
     }
     
 }

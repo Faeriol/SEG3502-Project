@@ -13,7 +13,7 @@ import org.opr.Persistance.util.AddressT;
 @Named(value = "address")
 @RequestScoped
 public class Address {
-    private String adressID;
+    private String ID;
     private int numeroRue;
     private String nomRue;
     private String numeroUnite;
@@ -24,17 +24,17 @@ public class Address {
     private List<AddressT> lookupResults;
 
     /**
-     * @return the adressID
+     * @return the ID
      */
-    public String getAdressID() {
-        return adressID;
+    public String getID() {
+        return ID;
     }
 
     /**
-     * @param adressID the adressID to set
+     * @param ID the ID to set
      */
-    public void setAdressID(String adressID) {
-        this.adressID = adressID;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     /**

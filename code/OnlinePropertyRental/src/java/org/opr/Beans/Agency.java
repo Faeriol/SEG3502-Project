@@ -13,6 +13,8 @@ import org.opr.Persistance.AgencyT;
 @Named(value = "agency")
 @RequestScoped
 public class Agency {
+    
+    private String ID;
     private String name;
     private Address address;
     private List<AgencyT> lookupResults;
@@ -63,5 +65,19 @@ public class Agency {
 
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

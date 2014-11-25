@@ -12,6 +12,7 @@ import org.opr.Persistance.Users.AccountT;
 @Named(value = "account")
 @RequestScoped
 public class Account {
+    private String ID;
     private String firstName, lastName, email, userName, password;
     private int type; // What is this supposed to be???
 
@@ -115,6 +116,20 @@ public class Account {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
 }

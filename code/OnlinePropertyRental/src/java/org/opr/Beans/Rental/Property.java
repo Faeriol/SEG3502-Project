@@ -14,6 +14,7 @@ import org.opr.Persistance.Rental.PropertyT;
 @Named(value = "property")
 @RequestScoped
 public class Property {
+    private String ID;
     private Address  address;
     private List<Picture> photos;
     private String  type;
@@ -138,6 +139,20 @@ public class Property {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    /**
+     * @return the ID
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * @param ID the ID to set
+     */
+    public void setID(String ID) {
+        this.ID = ID;
     }
     
 }
