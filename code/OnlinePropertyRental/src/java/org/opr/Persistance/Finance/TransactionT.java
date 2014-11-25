@@ -17,7 +17,7 @@ import org.opr.Persistance.Users.UserT;
  */
 @Entity
 @Table(name="Transaction")
-public class TransactionT {
+public class TransactionT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

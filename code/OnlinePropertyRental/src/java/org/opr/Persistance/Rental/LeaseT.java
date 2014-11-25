@@ -2,12 +2,10 @@ package org.opr.Persistance.Rental;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.opr.Persistance.Users.CustomerT;
@@ -18,7 +16,7 @@ import org.opr.Persistance.Users.CustomerT;
  */
 @Entity
 @Table(name="Lease")
-public class LeaseT {
+public class LeaseT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -29,7 +27,7 @@ public class LeaseT {
     private CustomerT RENTER;
     @OneToOne
     private PropertyT LEASED_PROPERTY;
-    private int RENT;
+    private float RENT;
     
     @Override
     public String toString() {
@@ -109,14 +107,14 @@ public class LeaseT {
     /**
      * @return the RENT
      */
-    public int getRENT() {
+    public float getRENT() {
         return RENT;
     }
 
     /**
      * @param RENT the RENT to set
      */
-    public void setRENT(int RENT) {
+    public void setRENT(float RENT) {
         this.RENT = RENT;
     }
 }

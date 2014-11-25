@@ -21,6 +21,48 @@ public class Customer extends User {
     private Lease           currentLease;
     
     public void addProperty(Property property){
-        visitList.add(property);
+        getVisitList().add(property);
+    }
+
+    /**
+     * @return the housingPreference
+     */
+    public Preferences getHousingPreference() {
+        return housingPreference;
+    }
+
+    /**
+     * @param housingPreference the housingPreference to set
+     */
+    public void setHousingPreference(Preferences housingPreference) {
+        this.housingPreference = housingPreference;
+    }
+
+    /**
+     * @return the visitList
+     */
+    public List<Property> getVisitList() {
+        return visitList;
+    }
+
+    /**
+     * @param visitList the visitList to set
+     */
+    public void setVisitList(List<Property> visitList) {
+        this.visitList = visitList;
+    }
+
+    /**
+     * @return the currentLease
+     */
+    public Lease getCurrentLease() {
+        return currentLease;
+    }
+
+    /**
+     * @param currentLease the currentLease to set
+     */
+    public void setCurrentLease(Lease currentLease) {
+        this.currentLease = currentLease;
     }
 }

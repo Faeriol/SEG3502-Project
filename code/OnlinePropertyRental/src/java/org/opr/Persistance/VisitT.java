@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.opr.Persistance.Rental.PropertyT;
 import org.opr.Persistance.Users.AgentT;
@@ -18,14 +19,17 @@ import org.opr.Persistance.Users.CustomerT;
  */
 @Entity
 @Table(name="Visit")
-public class VisitT {
+public class VisitT implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int VISIT_ID;
-    private Date DATE;
+    private Date VISIT_DATE;
+    @ManyToOne
     private CustomerT PROSPECT;
+    @ManyToOne
     private AgentT REP;
+    @ManyToOne
     private PropertyT PROPERTY;
 
     /**
@@ -40,20 +44,6 @@ public class VisitT {
      */
     public void setVISIT_ID(int VISIT_ID) {
         this.VISIT_ID = VISIT_ID;
-    }
-
-    /**
-     * @return the DATE
-     */
-    public Date getDATE() {
-        return DATE;
-    }
-
-    /**
-     * @param DATE the DATE to set
-     */
-    public void setDATE(Date DATE) {
-        this.DATE = DATE;
     }
 
     /**
@@ -101,6 +91,20 @@ public class VisitT {
     @Override
     public String toString() {
         return "persistence.Visit[id=" + this.getVISIT_ID() + "]";
+    }
+
+    /**
+     * @return the VISIT_DATE
+     */
+    public Date getVISIT_DATE() {
+        return VISIT_DATE;
+    }
+
+    /**
+     * @param VISIT_DATE the VISIT_DATE to set
+     */
+    public void setVISIT_DATE(Date VISIT_DATE) {
+        this.VISIT_DATE = VISIT_DATE;
     }
 
 }

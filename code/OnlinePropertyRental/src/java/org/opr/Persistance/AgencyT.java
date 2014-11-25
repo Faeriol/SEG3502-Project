@@ -1,11 +1,11 @@
 package org.opr.Persistance;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.opr.Persistance.util.AddressT;
 
@@ -15,11 +15,12 @@ import org.opr.Persistance.util.AddressT;
  */
 @Entity
 @Table(name="Agency")
-public class AgencyT {
+public class AgencyT implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int AGENCY_ID;
     private String NAME;
+    @OneToOne
     private AddressT ADDRESS;
     
     @Override

@@ -1,15 +1,20 @@
 package org.opr.Persistance.Rental;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.opr.Persistance.Users.OwnerT;
+import org.opr.Persistance.VisitT;
 import org.opr.Persistance.util.AddressT;
+import org.opr.Persistance.util.PictureT;
 
 /**
  *
@@ -17,15 +22,19 @@ import org.opr.Persistance.util.AddressT;
  */
 @Entity
 @Table(name="Property")
-public class PropertyT {
+public class PropertyT implements Serializable {
+    @OneToMany(mappedBy = "PROPERTY")
+    private List<VisitT> visitTs;
+    @ManyToOne
+    private OwnerT ownerT;
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int PROPERTY_ID;
     @OneToOne
     private AddressT ADDRESS;
-    //@OneToMany
-    //private PictureT pictures; //Fix it later
+    @OneToMany
+    private List<PictureT> pictures;
     private String TYPE;
     private short NB_BEDROOMS, NB_BATHROOMS, NB_OTHERS;
     private float RENT;
@@ -131,6 +140,48 @@ public class PropertyT {
     @Override
     public String toString() {
         return "persistence.Property[id=" + this.getPROPERTY_ID() + "]";
+    }
+
+    /**
+     * @return the visitTs
+     */
+    public List<VisitT> getVisitTs() {
+        return visitTs;
+    }
+
+    /**
+     * @param visitTs the visitTs to set
+     */
+    public void setVisitTs(List<VisitT> visitTs) {
+        this.visitTs = visitTs;
+    }
+
+    /**
+     * @return the ownerT
+     */
+    public OwnerT getOwnerT() {
+        return ownerT;
+    }
+
+    /**
+     * @param ownerT the ownerT to set
+     */
+    public void setOwnerT(OwnerT ownerT) {
+        this.ownerT = ownerT;
+    }
+
+    /**
+     * @return the pictures
+     */
+    public List<PictureT> getPictures() {
+        return pictures;
+    }
+
+    /**
+     * @param pictures the pictures to set
+     */
+    public void setPictures(List<PictureT> pictures) {
+        this.pictures = pictures;
     }
     
 }
