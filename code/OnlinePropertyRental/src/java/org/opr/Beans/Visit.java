@@ -5,6 +5,7 @@ import org.opr.Beans.Users.Agent;
 import org.opr.Beans.Users.Customer;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import org.opr.Beans.Rental.Property;
 import org.opr.Persistance.VisitT;
 
 /**
@@ -17,6 +18,7 @@ public class Visit {
     private Date     date;
     private Customer prospect;
     private Agent    rep;
+    private Property property;
 
     /**
      * @return the date

@@ -138,6 +138,7 @@ public class AddressT implements Serializable{
         return "persistence.Adress[id=" + this.getADDRESS_ID() + "]";
     }
 
+
     /**
      * @return the ADDRESS_ID
      */

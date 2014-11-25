@@ -2,6 +2,7 @@ package org.opr.Beans;
 
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import org.opr.Beans.util.Address;
 import org.opr.Persistance.AgencyT;
 
 /**
@@ -12,7 +13,7 @@ import org.opr.Persistance.AgencyT;
 @RequestScoped
 public class Agency {
     private String name;
-    private String address;
+    private Address address;
 
     /**
      * @return the name
@@ -31,14 +32,14 @@ public class Agency {
     /**
      * @return the address
      */
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
     /**
      * @param address the address to set
      */
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
     

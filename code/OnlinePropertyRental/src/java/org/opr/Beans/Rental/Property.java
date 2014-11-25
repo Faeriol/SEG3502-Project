@@ -18,7 +18,7 @@ public class Property {
     private List<Picture> photos;
     private String  type;
     private short   nbBedrooms, nbBathrooms, nbOthers;
-    private int     rent;
+    private float     rent;
 
     /**
      * @return the address
@@ -111,14 +111,14 @@ public class Property {
     /**
      * @return the rent
      */
-    public int getRent() {
+    public float getRent() {
         return rent;
     }
 
     /**
      * @param rent the rent to set
      */
-    public void setRent(int rent) {
+    public void setRent(float rent) {
         this.rent = rent;
     }
     
