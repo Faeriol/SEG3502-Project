@@ -22,7 +22,7 @@
                             <h:message id="userNameMsg" for="userName" errorStyle="color:red; display:block"/>
 
                             <h:outputText value="Password"></h:outputText>
-                            <h:inputText id="password" value="#{account.password}" required="true" requiredMessage="Please enter Password"></h:inputText>
+                            <h:inputSecret id="password" value="#{account.password}" required="true" requiredMessage="Please enter Password"></h:inputSecret>
                             <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block" styleClass="errorMessage"/>
 
                             <h:outputText value="First Name"></h:outputText>
