@@ -14,10 +14,18 @@ import org.opr.Persistance.Users.AccountT;
 public class Account {
     private String ID;
     private String firstName, lastName, email, userName, password;
+    private String status;
     private int type; // What is this supposed to be???
 
     private List<AccountT> lookupResults;
     
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     /**
      * @return the firstName
      */

@@ -1,12 +1,74 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Create Account</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <h1>Create New Account...</h1>
+                <f:view>
+                    <h:form>
+                        <h:panelGrid columns="3">
+
+                            <h:outputText value="UserName"></h:outputText>
+                            <h:inputText id="userName" value="#{account.userName}" validatorMessage="Value must contain only alphanumeric characters" required="true" requiredMessage="Please enter UserName">
+                                <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
+                            </h:inputText>
+                            <h:message id="userNameMsg" for="userName" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Password"></h:outputText>
+                            <h:inputText id="password" value="#{account.password}" required="true" requiredMessage="Please enter Password"></h:inputText>
+                            <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+
+                            <h:outputText value="First Name"></h:outputText>
+                            <h:inputText id="firstName" value="#{account.firstName}" validatorMessage="Value must contain only alphabetic characters" required="true" requiredMessage="Please enter First Name">
+                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                            </h:inputText>
+                            <h:message id="firstNameMsg" for="firstName" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+
+                            <h:outputText value="Last Name"></h:outputText>
+                            <h:inputText id="lastName" value="#{account.lastName}" validatorMessage="Value must contain only alphabetic characters" required="true" requiredMessage="Please enter Last Name">
+                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                            </h:inputText>
+                            <h:message id="lastNameMsg" for="lastName" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Email Address"></h:outputText>
+                            <h:inputText id="email" value="#{account.email}" validatorMessage="Value must be a valid email address" required="true" requiredMessage="Please enter Email Address">
+                                <f:validateRegex pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"/>
+                            </h:inputText>
+                            <h:message id="emailMsg" for="email" errorStyle="color:red; display:block"/>
+
+
+                            <h:outputText value="Type of Account"></h:outputText>
+                            <h:selectOneMenu id="type" value="#{account.type}" required="true" requiredMessage="Please select a type of account">
+                                <f:selectItem itemValue="#{null}" itemLabel="--" />
+                                <f:selectItem itemValue="1" itemLabel="Customer" />
+                                <f:selectItem itemValue="2" itemLabel="Owner" />
+                            </h:selectOneMenu>
+                            <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Add" type="command"  actionListener="#{system.createAccount()}">
+                            <f:ajax execute="userName password firstName lastName email type" 
+                                    render="status userNameMsg passwordMsg firstNameMsg lastNameMsg emailMsg typeMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Cancel" type="reset" />
+
+                        <div>
+                            <hr/>
+                            <hr/>
+                            <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{account.status}"/>
+                        </div>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
     </h:body>
 </html>
 
