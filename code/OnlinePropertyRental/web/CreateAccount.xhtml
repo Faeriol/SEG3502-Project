@@ -47,8 +47,8 @@
                             <h:outputText value="Type of Account"></h:outputText>
                             <h:selectOneMenu id="type" value="#{account.type}" required="true" requiredMessage="Please select a type of account">
                                 <f:selectItem itemValue="#{null}" itemLabel="--" />
-                                <f:selectItem itemValue="1" itemLabel="Customer" />
-                                <f:selectItem itemValue="2" itemLabel="Owner" />
+                                <f:selectItem itemValue="customer" itemLabel="Customer" />
+                                <f:selectItem itemValue="owner" itemLabel="Owner" />
                             </h:selectOneMenu>
                             <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
                         </h:panelGrid>

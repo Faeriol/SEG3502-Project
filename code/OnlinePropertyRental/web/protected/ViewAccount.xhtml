@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./#{sessionScope.Account.TYPE}Template.xhtml">
+
+            <ui:define name="content">
+                <h1>Here is your account information</h1>
+                <h3>UserName: #{sessionScope.Account.USER_NAME}</h3>
+                <h3>First Name: #{sessionScope.Account.FIRST_NAME}</h3>
+                <h3>Last Name: #{sessionScope.Account.LAST_NAME}</h3>
+                <h3>Email: #{sessionScope.Account.EMAIL}</h3>
+                <h3>Type: #{sessionScope.Account.TYPE}</h3>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

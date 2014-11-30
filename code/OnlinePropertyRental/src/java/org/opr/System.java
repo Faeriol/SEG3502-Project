@@ -1,5 +1,6 @@
 package org.opr;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.logging.Level;
@@ -9,6 +10,7 @@ import org.opr.Beans.Rental.Property;
 import org.opr.Beans.Users.Account;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -54,7 +56,10 @@ public class System {
         } else {
             userAccount.setStatus("Creation Unsuccessful");
         }
-        // Handle
+    }
+    
+    public void updateAccount() {
+        DBHelper.print(userAccount.getPassword());
     }
     
     private void deleteProperty(Property property){
@@ -76,22 +81,34 @@ public class System {
     private void viewVisitingList(Account account){
         
     }
-    
-    public void login(){
+
+    public void login() {
         AccountT acc = DBHelper.findAccount(em, userAccount.getUserName());
-         if (acc != null) {
-                 if (userAccount.getPassword().equals(acc.getPASSWORD())) {
-                     //login ok - set user in session context
-                     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-                     session.setAttribute("Account", acc);
-                     userAccount.setStatus("Login Successful");
-                 } else {
-                     userAccount.setStatus("Login Unsuccessful - Wrong Password");
-                 }
-             
-         } else {
-             userAccount.setStatus("Login Unsuccessful - Account Not Found");
-         }
+        if (acc != null) {
+            if (userAccount.getPassword().equals(acc.getPASSWORD())) {
+                //login ok - set user in session context
+                HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+                session.setAttribute("Account", acc);
+                userAccount.setStatus("Login Successful");
+
+                ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+                try {
+                    if(acc.getTYPE().equals("customer")) {
+                        context.redirect("protected/customerIndex.xhtml");
+                    } else if(acc.getTYPE().equals("owner")) {
+                        context.redirect("protected/ownerIndex.xhtml");
+                    } else {
+                        throw new IOException("The type of the account does not follow defined convention");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                userAccount.setStatus("Login Unsuccessful - Wrong Password");
+            }
+        } else {
+            userAccount.setStatus("Login Unsuccessful - Account Not Found");
+        } 
     }
     
     public void logout(){

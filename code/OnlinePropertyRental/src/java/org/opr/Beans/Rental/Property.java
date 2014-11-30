@@ -18,8 +18,8 @@ public class Property {
     private Address  address;
     private List<Picture> photos;
     private String  type;
-    private short   nbBedrooms, nbBathrooms, nbOthers;
-    private float     rent;
+    private short nbBedrooms, nbBathrooms, nbOthers;
+    private float rent;
     
     private List<PropertyT> lookupResults;
 

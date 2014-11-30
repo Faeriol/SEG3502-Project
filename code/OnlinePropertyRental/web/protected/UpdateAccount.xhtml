@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+    <body>
+
+        <ui:composition template="./#{sessionScope.Account.TYPE}Template.xhtml">
+
+            <ui:define name="content">
+                <h1>You can update your account information by making the necessary changes and submitting it</h1>
+                
+                <f:view>
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            <h:outputText value="UserName"></h:outputText>
+                            <h:inputText id="userName" value="#{sessionScope.Account.USER_NAME}" disabled="true"></h:inputText>
+                            <h4>Cannot be modified</h4>
+                            
+                            <h:outputText value="Password"></h:outputText>
+                            <h:inputSecret id="password" value="#{sessionScope.Account.PASSWORD}" redisplay="true" required="true" requiredMessage="Please enter Password">
+                                <f:passThroughAttribute name="weff" value="search"/>
+                            </h:inputSecret>
+                            <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                            
+                            <h:outputText value="First Name"></h:outputText>
+                            <h:inputText id="firstName" value="#{sessionScope.Account.FIRST_NAME}" disabled="true"></h:inputText>
+                            <h4>Cannot be modified</h4>
+                            
+                            <h:outputText value="Last Name"></h:outputText>
+                            <h:inputText id="lastName" value="#{sessionScope.Account.LAST_NAME}" disabled="true"></h:inputText>
+                            <h4>Cannot be modified</h4>
+                            
+                            <h:outputText value="Email Address"></h:outputText>
+                            <p:inputText />
+                            <h:inputText id="email" value="#{account.email}" validatorMessage="Value must be a valid email address" required="true" requiredMessage="Please enter Email Address">
+                                <f:validateRegex pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"/>
+                            </h:inputText>
+                            <h:message id="emailMsg" for="email" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Type of Account"></h:outputText>
+                            <h:inputText id="type" value="#{sessionScope.Account.TYPE}" disabled="true"></h:inputText>
+                            <h4>Cannot be modified</h4>
+                        </h:panelGrid>
+                        <h:commandButton value="Update" type="command"  actionListener="#{system.updateAccount()}">
+                            <f:ajax execute="password email" 
+                                    render="status passwordMsg emailMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Cancel" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <hr/>
+                            <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{account.status}"/>
+                        </div>
+                    </h:form>
+                    
+                </f:view>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

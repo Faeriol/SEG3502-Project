@@ -19,7 +19,7 @@ public class AccountT implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private String ACCOUNT_ID;
-    private int TYPE;
+    private String TYPE;
     private String FIRST_NAME, LAST_NAME, EMAIL, USER_NAME, PASSWORD;
 
     /**
@@ -39,14 +39,14 @@ public class AccountT implements Serializable {
     /**
      * @return the TYPE
      */
-    public int getTYPE() {
+    public String getTYPE() {
         return TYPE;
     }
 
     /**
      * @param TYPE the TYPE to set
      */
-    public void setTYPE(int TYPE) {
+    public void setTYPE(String TYPE) {
         this.TYPE = TYPE;
     }
 

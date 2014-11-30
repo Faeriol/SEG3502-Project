@@ -15,17 +15,43 @@ public class Account {
     private String ID;
     private String firstName, lastName, email, userName, password;
     private String status;
-    private int type; // What is this supposed to be???
+    private String template;
+    private String type; // What is this supposed to be??? vlad: I use it to determine what template the client sees
 
     private List<AccountT> lookupResults;
     
+    /**
+     * 
+     * @return the template the use
+     */
+    public String getTemplate() {
+        return template;
+    }
+    
+    /**
+     * 
+     * @param template the template to set
+     */
+    public void setTemplate(String template) {
+        this.template = template;
+    }
+    
+    /**
+     * 
+     * @return the login status
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * 
+     * @param status the login status to set
+     */
     public void setStatus(String status) {
         this.status = status;
     }
+    
     /**
      * @return the firstName
      */
@@ -99,14 +125,14 @@ public class Account {
     /**
      * @return the type
      */
-    public int getType() {
+    public String getType() {
         return type;
     }
 
     /**
      * @param type the type to set
      */
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
     

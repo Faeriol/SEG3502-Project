@@ -5,11 +5,11 @@
 
     <body>
 
-        <ui:composition template="./template.xhtml">
+        <ui:composition template="./ownerTemplate.xhtml">
 
             <ui:define name="content">
                 <div>
-                    <p>Welcome to the public page of the Online Property Rental System</p> 
+                    <p>Welcome, #{sessionScope.Account.FIRST_NAME} #{sessionScope.Account.LAST_NAME}</p> 
                     <p>Please select an option in the left menu</p>
                 </div>
             </ui:define>
