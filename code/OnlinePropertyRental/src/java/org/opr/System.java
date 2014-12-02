@@ -81,6 +81,12 @@ public class System {
     private void viewVisitingList(Account account){
         
     }
+    
+    private List<Property> findPropertyByLocation(String location)
+    {
+        List<Property> pro= DBHelper.findAllProperty(em,location);
+        return pro;
+    }
 
     public void login() {
         AccountT acc = DBHelper.findAccount(em, userAccount.getUserName());

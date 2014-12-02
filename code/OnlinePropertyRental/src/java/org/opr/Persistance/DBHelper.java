@@ -151,6 +151,11 @@ public class DBHelper {
         Query query = em.createQuery("SELECT P From PropertyT p");
         return query.getResultList();
     }
+    public static List findAllProperty(EntityManager em, String ville) {
+        String myQuery="SELECT P From PropertyT p, AddressT a WHERE AddressT a.ville="+ville+" AND PropertyT p.address=a.id";
+        Query query = em.createQuery(myQuery);
+        return query.getResultList();
+    }
 //Add other property finders
 
     public static boolean addProperty(EntityManager em, UserTransaction utx, Property prop) {
