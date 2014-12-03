@@ -405,4 +405,12 @@ public class DBHelper {
      */
 // NO ADDRESS, NO PICTURE, used by add methods...
 // User might even be used by extending objects... This is reason for commenting out
+
+    public static List<PropertyT> findOwnedProperty(EntityManager em, Account userAccount) {
+        String myQuery="SELECT P From PropertyT p WHERE p.ownerT.ACCOUNT.USER_NAME = :owner";
+        Query query = em.createQuery(myQuery);
+        query.setParameter("owner", userAccount.getUserName());
+        List<PropertyT> pro = query.getResultList();
+        return pro;
+    }
 }

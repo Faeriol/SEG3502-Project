@@ -36,7 +36,7 @@ import org.opr.Persistance.Users.UserT;
 @RequestScoped
 public class System {
     @Inject
-    private Account userAccount;
+    private Account account;
     @Inject
     private Property property;
     @Inject
@@ -45,6 +45,7 @@ public class System {
     private EntityManager em;
     @Resource
     private javax.transaction.UserTransaction utx;
+    
     
     //private List<Account> accounts; In DB
     //private List<Agency> agencies; In DB
@@ -55,23 +56,23 @@ public class System {
     }
     
     public void createAccount(){
-        if (DBHelper.addUser(em, utx, userAccount)) {
-            userAccount.setStatus("Creation Successful");
+        if (DBHelper.addUser(em, utx, account)) {
+            account.setStatus("Creation Successful");
         } else {
-            userAccount.setStatus("Creation Unsuccessful");
+            account.setStatus("Creation Unsuccessful");
         }
     }
     
     public void updateAccount() {
-        if(userAccount.getPassword().isEmpty() && userAccount.getEmail().isEmpty()) {
-            userAccount.setStatus("No changes - Update not performed");
+        if(account.getPassword().isEmpty() && account.getEmail().isEmpty()) {
+            account.setStatus("No changes - Update not performed");
         } else {
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             UserT tUser = (UserT) session.getAttribute("User");
-            if (DBHelper.updateAccount(em, utx, tUser.getACCOUNT().getACCOUNT_ID(), userAccount)) {
-                userAccount.setStatus("Update Successful");
+            if (DBHelper.updateAccount(em, utx, tUser.getACCOUNT().getACCOUNT_ID(), account)) {
+                account.setStatus("Update Successful");
             } else {
-                userAccount.setStatus("Update Unsuccessful");
+                account.setStatus("Update Unsuccessful");
             }
         }
     }
@@ -81,7 +82,7 @@ public class System {
         UserT tUser = (UserT) session.getAttribute("User");
         
         if (DBHelper.deleteAccount(em, utx, tUser.getACCOUNT().getUSER_NAME())) {
-            userAccount.setStatus("Delete Successful");
+            account.setStatus("Delete Successful");
             logout();
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("../Login.xhtml");
@@ -89,7 +90,7 @@ public class System {
                 ex.printStackTrace();
             }
         } else {
-            userAccount.setStatus("Delete Unsuccessful");
+            account.setStatus("Delete Unsuccessful");
         }
     }
     
@@ -129,23 +130,28 @@ public class System {
         property.setLookupResults(pro);
         
     }
+    
+    public void findOwnedProperty() {
+        List<PropertyT> pro = DBHelper.findOwnedProperty(em, account);
+        property.setLookupResults(pro);
+    }
 
     public void login() {
         UserT tUser = null;
-        AccountT acc = DBHelper.findAccount(em, userAccount.getUserName());
+        AccountT acc = DBHelper.findAccount(em, account.getUserName());
 
         if (acc != null) {
             if (acc.getTYPE().equals("owner")) {
-                tUser = DBHelper.findOwner(em, userAccount.getUserName());
+                tUser = DBHelper.findOwner(em, account.getUserName());
             } else {
-                tUser = DBHelper.findCustomer(em, userAccount.getUserName());
+                tUser = DBHelper.findCustomer(em, account.getUserName());
             }
             
-            if (userAccount.getPassword().equals(tUser.getACCOUNT().getPASSWORD())) {
+            if (account.getPassword().equals(tUser.getACCOUNT().getPASSWORD())) {
                 //login ok - set user in session context
                 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 session.setAttribute("User", tUser);
-                userAccount.setStatus("Login Successful");
+                account.setStatus("Login Successful");
 
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 try {
@@ -160,10 +166,10 @@ public class System {
                     e.printStackTrace();
                 }
             } else {
-                userAccount.setStatus("Login Unsuccessful - Wrong Password");
+                account.setStatus("Login Unsuccessful - Wrong Password");
             }
         } else {
-            userAccount.setStatus("Login Unsuccessful - Account Not Found");
+            account.setStatus("Login Unsuccessful - Account Not Found");
         }
     }
 
@@ -172,7 +178,7 @@ public class System {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.invalidate();
         // navigate to index - see faces-config.xml for navigation rules
-        userAccount.setStatus("Logout Successful");
+        account.setStatus("Logout Successful");
     }
 
     public void persist(Object object) {
