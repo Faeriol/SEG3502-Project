@@ -1,10 +1,16 @@
 package org.opr.Beans.Rental;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.ManagedBean;
 import org.opr.Beans.util.Address;
 import org.opr.Beans.util.Picture;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.servlet.http.Part;
 import org.opr.Persistance.Rental.PropertyT;
 
 /**
@@ -16,18 +22,74 @@ import org.opr.Persistance.Rental.PropertyT;
 public class Property {
     private String ID;
     private Address  address;
+    private Part part;
     private List<Picture> photos;
     private String  type;
     private short nbBedrooms, nbBathrooms, nbOthers;
     private float rent;
     
+    private String status;
+    
     private List<PropertyT> lookupResults;
 
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public Part getPart() {
+        return part;
+    }
+
+    public void setPart(Part part) {
+        if(photos == null) {
+            photos = new ArrayList<>();
+        }
+        
+        Picture picture = new Picture();
+        picture.setID(getFileName(part));
+        
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            
+            InputStream in = part.getInputStream();
+            byte[] buffer = new byte[1024];
+            int r;
+            while (true) {
+                r = in.read(buffer);
+                if (r == -1) {
+                    break;
+                }
+                out.write(buffer, 0, r);
+            }
+            picture.setData(out.toByteArray());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                out.close();
+            }catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        photos.add(picture);
+        this.part = null;
+    }
+    
     /**
      * @return the address
      */
     public Address getAddress() {
-        return address;
+        if(address == null) {
+            this.address = new Address();
+            return address;
+        } else {
+            return address;
+        }
     }
 
     /**
@@ -41,7 +103,7 @@ public class Property {
      * @return the photos
      */
     public List<Picture> getPhotos() {
-        return photos;
+            return photos;
     }
 
     /**
@@ -155,4 +217,14 @@ public class Property {
         this.ID = ID;
     }
     
+    private String getFileName(Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        for (String content : part.getHeader("content-disposition").split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim()
+                        .replace("\"", "");
+            }
+        }
+        return null;
+    }
 }

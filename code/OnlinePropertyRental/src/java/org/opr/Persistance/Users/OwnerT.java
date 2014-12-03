@@ -3,6 +3,7 @@ package org.opr.Persistance.Users;
 import java.util.List;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ import org.opr.Persistance.Rental.PropertyT;
 @Table(name="Owner")
 public class OwnerT extends UserT implements Serializable {
     
-    @OneToMany(mappedBy = "ownerT")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerT") 
     private List<PropertyT> PROPERTIES;
 
     /**

@@ -1,14 +1,112 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./ownerTemplate.xhtml">
 
             <ui:define name="content">
-                content
+                <h1>Add a new Property ..</h1>
+
+                <f:view>
+                    <h:form enctype="multipart/form-data">
+                        <h:panelGrid columns="3">
+
+                            <h:outputText value="Type of Property"></h:outputText>
+                            <h:selectOneMenu id="type" value="#{property.type}" required="true" requiredMessage="Please select a type of property">
+                                <f:selectItem itemValue="#{null}" itemLabel="--" />
+                                <f:selectItem itemValue="house" itemLabel="House" />
+                                <f:selectItem itemValue="apartment" itemLabel="Apartment" />
+                            </h:selectOneMenu>
+                            <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Street Name"></h:outputText>
+                            <h:inputText id="streetName" value="#{address.nomRue}" validatorMessage="Value must contain only alphabetic characters" required="true" requiredMessage="Please enter Street Name">
+                                <f:validateRegex pattern="^[a-zA-Z-\s]+$"/>
+                            </h:inputText>
+                            <h:message id="streetNameMsg" for="streetName" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                            
+                            <h:outputText value="Street Number"></h:outputText>
+                            <h:inputText id="streetNumber" value="#{address.numeroRue}" converterMessage="Value must contain only numerical characters" required="true" requiredMessage="Please enter Street Number"></h:inputText>
+                            <h:message id="streetNumberMsg" for="streetNumber" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                            
+                            <h:outputText value="Apartment Number"></h:outputText>
+                            <h:inputText id="apartmentNumber" value="#{address.numeroUnite}" validatorMessage="Value must contain only alphanumeric characters">
+                                <f:validateRegex pattern="^$|^[a-zA-Z0-9]+$"/>
+                            </h:inputText>
+                            <h:message id="apartmentNumberMsg" for="apartmentNumber" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                            
+                            <h:outputText value="City"></h:outputText>
+                            <h:inputText id="city" value="#{address.ville}" validatorMessage="Value must contain only alphabetic characters" required="true" requiredMessage="Please enter City">
+                                <f:validateRegex pattern="^[a-zA-Z-]+$"/>
+                            </h:inputText>
+                            <h:message id="cityMsg" for="city" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                            
+                            <h:outputText value="Province"></h:outputText>
+                            <h:selectOneMenu id="province" value="#{address.province}" required="true" requiredMessage="Please select a province">
+                                <f:selectItem itemValue="#{null}" itemLabel="--" />
+                                <f:selectItem itemValue="AB" itemLabel="Alberta" />
+                                <f:selectItem itemValue="BC" itemLabel="British Columbia" />
+                                <f:selectItem itemValue="MB" itemLabel="Manitoba" />
+                                <f:selectItem itemValue="NB" itemLabel="New Brunswick" />
+                                <f:selectItem itemValue="NL" itemLabel="Newfoundland and Labrador" />
+                                <f:selectItem itemValue="NS" itemLabel="Nova Scotia" />
+                                <f:selectItem itemValue="NT" itemLabel="Northwest Territories" />
+                                <f:selectItem itemValue="NU" itemLabel="Nunavut" />
+                                <f:selectItem itemValue="ON" itemLabel="Ontario" />
+                                <f:selectItem itemValue="PE" itemLabel="Prince Edward Island" />
+                                <f:selectItem itemValue="QC" itemLabel="Quebec" />
+                                <f:selectItem itemValue="SK" itemLabel="Saskatchewan" />
+                                <f:selectItem itemValue="YT" itemLabel="Yukon" />
+                            </h:selectOneMenu>
+                            <h:message id="provinceMsg" for="province" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Postal Code"></h:outputText>
+                            <h:inputText id="postalCode" value="#{address.postalCode}" validatorMessage="Value must follow the pattern ANA NAN" required="true" requiredMessage="Please enter Postal Code">
+                                <f:validateRegex pattern="^[a-zA-Z][0-9][a-zA-Z] [0-9][a-zA-Z][0-9]$"/>
+                            </h:inputText>
+                            <h:message id="postalCodeMsg" for="postalCode" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Number of Bedrooms"></h:outputText>
+                            <h:inputText id="nbOfBedrooms" value="#{property.nbBedrooms}" converterMessage="Value must contain only numerical characters" required="true" requiredMessage="Please enter number of Bedrooms">
+                                
+                            </h:inputText>
+                            <h:message id="nbOfBedroomsMsg" for="nbOfBedrooms" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Number of Bathrooms"></h:outputText>
+                            <h:inputText id="nbOfBathrooms" value="#{property.nbBathrooms}" converterMessage="Value must contain only numerical characters" required="true" requiredMessage="Please enter number of Bathrooms"></h:inputText>
+                            <h:message id="nbOfBathroomsMsg" for="nbOfBathrooms" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Number of Other Rooms"></h:outputText>
+                            <h:inputText id="nbOfOtherRooms" value="#{property.nbOthers}" converterMessage="Value must contain only numerical characters" required="true" requiredMessage="Please enter number of Other Rooms"></h:inputText>
+                            <h:message id="nbOfOtherRoomsMsg" for="nbOfOtherRooms" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Rent"></h:outputText>
+                            <h:inputText id="rent" value="#{property.rent}" converterMessage="Value must contain only numerical characters" required="true" requiredMessage="Please enter Rent"></h:inputText>
+                            <h:message id="rentMsg" for="rent" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Image 1"></h:outputText>
+                            <h:inputFile id="image1" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:message id="imageMsg1" for="image1" errorStyle="color:red; display:block"/>
+                            
+                        </h:panelGrid>
+                        <h:commandButton value="Add" type="command"  actionListener="#{system.createProperty()}">
+                            <f:ajax execute="type streetName streetNumber apartmentNumber city province postalCode nbOfBedrooms nbOfBathrooms nbOfOtherRooms rent image1" 
+                                    render="status typeMsg streetNameMsg streetNumberMsg apartmentNumberMsg cityMsg provinceMsg postalCodeMsg nbOfBedroomsMsg nbOfBathroomsMsg nbOfOtherRoomsMsg rentMsg imageMsg1"/>
+                        </h:commandButton>
+                        <h:commandButton value="Cancel" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <hr/>
+                            <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{property.status}"/>
+                        </div>
+                    </h:form>
+                </f:view>
             </ui:define>
 
         </ui:composition>

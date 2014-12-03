@@ -6,6 +6,7 @@ import org.opr.Beans.Rental.*;
 import org.opr.Beans.Users.*;
 import org.opr.Beans.util.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import org.opr.Persistance.Finance.*;
 import org.opr.Persistance.Rental.*;
 import org.opr.Persistance.Users.*;
@@ -153,8 +154,65 @@ public class DBHelper {
     }
 //Add other property finders
 
-    public static boolean addProperty(EntityManager em, UserTransaction utx, Property prop) {
-        System.err.println("Not implemented!");
+    public static boolean addProperty(EntityManager em, UserTransaction utx, Property prop, Address addr, String userId) {
+        try {
+            utx.begin();
+            PropertyT tProperty = new PropertyT();
+            AddressT tAddress = new AddressT();
+            List<PictureT> tPhotos = new ArrayList<>();
+            
+            tProperty.setNB_BATHROOMS(prop.getNbBathrooms());
+            tProperty.setNB_BEDROOMS(prop.getNbBedrooms());
+            tProperty.setNB_OTHERS(prop.getNbOthers());
+            tProperty.setRENT(prop.getRent());
+            tProperty.setTYPE(prop.getType()); 
+            tProperty.setOwnerT(findOwner(em, userId));
+            
+            tAddress.setNOM_RUE(addr.getNomRue());
+            tAddress.setNUMERO_RUE(addr.getNumeroRue());
+            tAddress.setNUMERO_UNITE(addr.getNumeroUnite());
+            tAddress.setPOSTAL_CODE(addr.getPostalCode());
+            tAddress.setPROVINCE(addr.getProvince());
+            tAddress.setVILLE(addr.getVille());
+            
+            tProperty.setADDRESS(tAddress);
+            
+            PictureT tempPhoto = new PictureT();
+            
+            for(Picture picture : prop.getPhotos()) {
+                tempPhoto.setPICTURE_ID(picture.getID());
+                tempPhoto.setPICTURE_DATA(picture.getData());
+                tPhotos.add(tempPhoto);
+            }
+            
+            tProperty.setPICTURES(tPhotos);
+            em.persist(tProperty);
+            utx.commit();
+            
+            updateOwnerPropreties(em, utx, userId, tProperty);
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    
+    public static boolean addAddress(EntityManager em, UserTransaction utx, Address addr) {
+        try {
+            utx.begin();
+            AddressT tAddress = new AddressT();
+            tAddress.setNOM_RUE(addr.getNomRue());
+            tAddress.setNUMERO_RUE(addr.getNumeroRue());
+            tAddress.setNUMERO_UNITE(addr.getNumeroUnite());
+            tAddress.setPOSTAL_CODE(addr.getPostalCode());
+            tAddress.setPROVINCE(addr.getProvince());
+            tAddress.setVILLE(addr.getVille());
+            em.persist(tAddress);
+            utx.commit();
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
         return false;
     }
 //ACCOUNT
@@ -169,12 +227,42 @@ public class DBHelper {
     }
 //Add other account finders
 
+    public static boolean addUser(EntityManager em, UserTransaction utx, Account acc) {
+        try {
+            utx.begin();
+            UserT tUser = null;
+            
+            if(acc.getType().equals("owner")) {
+                tUser = new OwnerT();
+            } else {
+                tUser = new CustomerT();
+            }
+            
+            tUser.setUSER_ID(acc.getUserName());
+            
+            AccountT tAccount = new AccountT();
+            tAccount.setACCOUNT_ID(acc.getUserName());
+            tAccount.setFIRST_NAME(acc.getFirstName());
+            tAccount.setLAST_NAME(acc.getLastName());
+            tAccount.setEMAIL(acc.getEmail());
+            tAccount.setUSER_NAME(acc.getUserName());
+            tAccount.setPASSWORD(acc.getPassword());
+            tAccount.setTYPE(acc.getType());
+            
+            tUser.setACCOUNT(tAccount);
+            em.persist(tUser);
+            utx.commit();
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+   
     public static boolean addAccount(EntityManager em, UserTransaction utx, Account acc) {
         try {
             utx.begin();
             AccountT tAccount = new AccountT();
-            //  CHANGE THIS MAYBE? BUT I DON'T KNOW WHAT ACCOUNT_ID IS
-            tAccount.setACCOUNT_ID(acc.getUserName());
             tAccount.setFIRST_NAME(acc.getFirstName());
             tAccount.setLAST_NAME(acc.getLastName());
             tAccount.setEMAIL(acc.getEmail());
@@ -189,8 +277,65 @@ public class DBHelper {
         }
         return false;
     }
+    
+    public static boolean updateAccount(EntityManager em, UserTransaction utx, String id, Account uAcc) {
+        try {
+            utx.begin();
+            AccountT account = em.find(AccountT.class, id);
+            if (!uAcc.getPassword().isEmpty()) {
+                account.setPASSWORD(uAcc.getPassword());
+            }
+
+            if (!uAcc.getEmail().isEmpty()) {
+                account.setEMAIL(uAcc.getEmail());
+            }
+
+            em.merge(account);
+            utx.commit();
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public static boolean updateOwnerPropreties(EntityManager em, UserTransaction utx, String id, PropertyT prop) {
+        try {
+            utx.begin();
+            OwnerT tOwner = em.find(OwnerT.class, id);
+            List<PropertyT> tempProp = tOwner.getPROPERTIES();
+            tempProp.add(prop);
+            tOwner.setPROPERTIES(tempProp);
+            em.merge(tOwner);
+            utx.commit();
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public static boolean deleteAccount(EntityManager em, UserTransaction utx, String id) {
+        try {
+            utx.begin(); 
+            UserT tUser = em.find(UserT.class, id);
+            em.remove(tUser);
+            utx.commit(); 
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false;
+    }
 //AGENT
 
+    public static AddressT findAddress(EntityManager em, String id) {
+        return em.find(AddressT.class, id);
+    }
+    
     public static AgentT findAgent(EntityManager em, String id) {
         return em.find(AgentT.class, id);
     }

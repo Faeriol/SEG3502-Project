@@ -1,14 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
-        <ui:composition template="./#{sessionScope.Account.TYPE}Template.xhtml">
+        <ui:composition template="./#{sessionScope.User.ACCOUNT.TYPE}Template.xhtml">
 
             <ui:define name="content">
-                content
+                <h1>Are you sure you want to delete your account #{sessionScope.User.ACCOUNT.FIRST_NAME} #{sessionScope.User.ACCOUNT.LAST_NAME} ?</h1>
+                
+                <f:view>
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <h:outputText value="Please confirm .. Please note that deleting your account will log you out of the system"></h:outputText>
+                            <br></br>
+                        </h:panelGrid>
+                        <h:commandButton value="Delete Account" type="command"  action="#{system.deleteAccount()}"></h:commandButton> 
+
+                        <div>
+                            <hr/>
+                            <hr/>
+                            <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{account.status}"/>
+                        </div>
+                    </h:form>
+                </f:view>
             </ui:define>
 
         </ui:composition>

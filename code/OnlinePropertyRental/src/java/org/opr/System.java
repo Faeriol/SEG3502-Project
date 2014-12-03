@@ -19,10 +19,13 @@ import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.transaction.UserTransaction;
 import org.opr.Beans.Users.User;
+import org.opr.Beans.util.Address;
 import org.opr.Persistance.DBHelper;
 import org.opr.Persistance.Users.AccountT;
+import org.opr.Persistance.Users.UserT;
 
 /**
  *
@@ -33,6 +36,10 @@ import org.opr.Persistance.Users.AccountT;
 public class System {
     @Inject
     private Account userAccount;
+    @Inject
+    private Property property;
+    @Inject
+    private Address address;
     @PersistenceContext(unitName = "OnlinePropertyRentalPU")
     private EntityManager em;
     @Resource
@@ -46,12 +53,8 @@ public class System {
         //!?
     }
     
-    private void addProperty(/**/){
-        // Implement!
-    }
-    
     public void createAccount(){
-        if (DBHelper.addAccount(em, utx, userAccount)) {
+        if (DBHelper.addUser(em, utx, userAccount)) {
             userAccount.setStatus("Creation Successful");
         } else {
             userAccount.setStatus("Creation Unsuccessful");
@@ -59,9 +62,46 @@ public class System {
     }
     
     public void updateAccount() {
-        DBHelper.print(userAccount.getPassword());
+        if(userAccount.getPassword().isEmpty() && userAccount.getEmail().isEmpty()) {
+            userAccount.setStatus("No changes - Update not performed");
+        } else {
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            UserT tUser = (UserT) session.getAttribute("User");
+            if (DBHelper.updateAccount(em, utx, tUser.getACCOUNT().getACCOUNT_ID(), userAccount)) {
+                userAccount.setStatus("Update Successful");
+            } else {
+                userAccount.setStatus("Update Unsuccessful");
+            }
+        }
     }
     
+    public void deleteAccount() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        UserT tUser = (UserT) session.getAttribute("User");
+        
+        if (DBHelper.deleteAccount(em, utx, tUser.getACCOUNT().getUSER_NAME())) {
+            userAccount.setStatus("Delete Successful");
+            logout();
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("../Login.xhtml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            userAccount.setStatus("Delete Unsuccessful");
+        }
+    }
+    
+    public void createProperty() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        UserT tUser = (UserT) session.getAttribute("User");
+        if (DBHelper.addProperty(em, utx, property, address, tUser.getACCOUNT().getUSER_NAME())) {
+            property.setStatus("Creation Successful");
+        } else {
+            property.setStatus("Creation Unsuccessful");
+        }
+    }
+
     private void deleteProperty(Property property){
         // Implement
     }
@@ -83,19 +123,27 @@ public class System {
     }
 
     public void login() {
+        UserT tUser = null;
         AccountT acc = DBHelper.findAccount(em, userAccount.getUserName());
+
         if (acc != null) {
-            if (userAccount.getPassword().equals(acc.getPASSWORD())) {
+            if (acc.getTYPE().equals("owner")) {
+                tUser = DBHelper.findOwner(em, userAccount.getUserName());
+            } else {
+                tUser = DBHelper.findCustomer(em, userAccount.getUserName());
+            }
+            
+            if (userAccount.getPassword().equals(tUser.getACCOUNT().getPASSWORD())) {
                 //login ok - set user in session context
                 HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-                session.setAttribute("Account", acc);
+                session.setAttribute("User", tUser);
                 userAccount.setStatus("Login Successful");
 
                 ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
                 try {
-                    if(acc.getTYPE().equals("customer")) {
+                    if (tUser.getACCOUNT().getTYPE().equals("customer")) {
                         context.redirect("protected/customerIndex.xhtml");
-                    } else if(acc.getTYPE().equals("owner")) {
+                    } else if (tUser.getACCOUNT().getTYPE().equals("owner")) {
                         context.redirect("protected/ownerIndex.xhtml");
                     } else {
                         throw new IOException("The type of the account does not follow defined convention");
@@ -108,10 +156,10 @@ public class System {
             }
         } else {
             userAccount.setStatus("Login Unsuccessful - Account Not Found");
-        } 
+        }
     }
-    
-    public void logout(){
+
+    public void logout() {
         // invalidate session to remove User
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         session.invalidate();

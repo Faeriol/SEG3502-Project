@@ -17,24 +17,22 @@
         <div id="top" class="top">
             <ui:insert name="top">
                 <div>
-                    <h1><BIG>OPR Website (logged in as #{sessionScope.Account.FIRST_NAME} #{sessionScope.Account.LAST_NAME})</BIG></h1>
+                    <h1><BIG>OPR Website (logged in as #{sessionScope.User.ACCOUNT.FIRST_NAME} #{sessionScope.User.ACCOUNT.LAST_NAME})</BIG></h1>
                 </div>
             </ui:insert>
         </div>
         <div>
             <div id="left">
-                <ui:insert name="left">
-                    <li><h:link outcome="AddProperty" value="Add Property"/></li>
-                    <li><h:link outcome="OwnerViewProperties" value="View Properties"/></li>
-                    <li><h:link outcome="UpdateProperty" value="Update Property"/></li>
-                    <li><h:link outcome="DeleteProperty" value="Delete Property"/></li>
-                    <li><h:link outcome="ViewVisitHistory" value="View Visit History"/></li>
-                    <li><h:link outcome="ViewAccount" value="View Account"/></li>
-                    <li><h:link outcome="UpdateAccount" value="Update Account"/></li>
-                    <li><h:link outcome="DeleteAccount" value="Delete Account"/></li>
-                    <li><h:link outcome="/faces/BrowsePropertyByLocation" value="Browse Property"/></li>
-                    <li><h:link outcome="/faces/Logout" value="Logout"/></li>
-                </ui:insert>
+                <li><h:link outcome="AddProperty" value="Add Property"/></li>
+                <li><h:link outcome="OwnerViewProperties" value="View Properties"/></li>
+                <li><h:link outcome="UpdateProperty" value="Update Property"/></li>
+                <li><h:link outcome="DeleteProperty" value="Delete Property"/></li>
+                <li><h:link outcome="ViewVisitHistory" value="View Visit History"/></li>
+                <li><h:link outcome="ViewAccount" value="View Account"/></li>
+                <li><h:link outcome="UpdateAccount" value="Update Account"/></li>
+                <li><h:link outcome="DeleteAccount" value="Delete Account"/></li>
+                <li><h:link outcome="/faces/BrowsePropertyByLocation" value="Browse Property"/></li>
+                <li><h:link outcome="/faces/Logout" value="Logout"/></li>
             </div>
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>

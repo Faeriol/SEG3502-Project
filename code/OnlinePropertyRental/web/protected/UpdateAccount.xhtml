@@ -4,10 +4,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
     <body>
 
-        <ui:composition template="./#{sessionScope.Account.TYPE}Template.xhtml">
+        <ui:composition template="./#{sessionScope.User.ACCOUNT.TYPE}Template.xhtml">
 
             <ui:define name="content">
                 <h1>You can update your account information by making the necessary changes and submitting it</h1>
@@ -16,33 +18,30 @@
                     <h:form>
                         <h:panelGrid columns="3">
                             <h:outputText value="UserName"></h:outputText>
-                            <h:inputText id="userName" value="#{sessionScope.Account.USER_NAME}" disabled="true"></h:inputText>
-                            <h4>Cannot be modified</h4>
+                            <h:inputText id="userName" value="#{sessionScope.User.ACCOUNT.USER_NAME}" disabled="true"></h:inputText>
+                            <h:outputText></h:outputText>
                             
                             <h:outputText value="Password"></h:outputText>
-                            <h:inputSecret id="password" value="#{sessionScope.Account.PASSWORD}" redisplay="true" required="true" requiredMessage="Please enter Password">
-                                <f:passThroughAttribute name="weff" value="search"/>
-                            </h:inputSecret>
-                            <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                            <h:inputSecret id="password" value="#{account.password}" pt:placeholder="********"></h:inputSecret>
+                            <h:outputText></h:outputText>
                             
                             <h:outputText value="First Name"></h:outputText>
-                            <h:inputText id="firstName" value="#{sessionScope.Account.FIRST_NAME}" disabled="true"></h:inputText>
-                            <h4>Cannot be modified</h4>
+                            <h:inputText id="firstName" value="#{sessionScope.User.ACCOUNT.FIRST_NAME}" disabled="true"></h:inputText>
+                            <h:outputText></h:outputText>
                             
                             <h:outputText value="Last Name"></h:outputText>
-                            <h:inputText id="lastName" value="#{sessionScope.Account.LAST_NAME}" disabled="true"></h:inputText>
-                            <h4>Cannot be modified</h4>
+                            <h:inputText id="lastName" value="#{sessionScope.User.ACCOUNT.LAST_NAME}" disabled="true"></h:inputText>
+                            <h:outputText></h:outputText>
                             
                             <h:outputText value="Email Address"></h:outputText>
-                            <p:inputText />
-                            <h:inputText id="email" value="#{account.email}" validatorMessage="Value must be a valid email address" required="true" requiredMessage="Please enter Email Address">
-                                <f:validateRegex pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"/>
+                            <h:inputText id="email" value="#{account.email}" pt:placeholder="#{sessionScope.User.ACCOUNT.EMAIL}" validatorMessage="Value must be a valid email address" >
+                                <f:validateRegex pattern="^$|^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"/>
                             </h:inputText>
                             <h:message id="emailMsg" for="email" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Type of Account"></h:outputText>
-                            <h:inputText id="type" value="#{sessionScope.Account.TYPE}" disabled="true"></h:inputText>
-                            <h4>Cannot be modified</h4>
+                            <h:inputText id="type" value="#{sessionScope.User.ACCOUNT.TYPE}" disabled="true"></h:inputText>
+                            <h:outputText></h:outputText>
                         </h:panelGrid>
                         <h:commandButton value="Update" type="command"  actionListener="#{system.updateAccount()}">
                             <f:ajax execute="password email" 

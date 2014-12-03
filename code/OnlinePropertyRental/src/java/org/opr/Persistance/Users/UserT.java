@@ -2,6 +2,7 @@ package org.opr.Persistance.Users;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class UserT implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private String USER_ID;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private AccountT ACCOUNT;
 
     /**

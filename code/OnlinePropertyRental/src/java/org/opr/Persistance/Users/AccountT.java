@@ -135,5 +135,4 @@ public class AccountT implements Serializable {
         hash += this.getACCOUNT_ID().hashCode();
         return hash;
     }
-    
 }

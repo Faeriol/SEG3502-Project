@@ -3,6 +3,7 @@ package org.opr.Persistance.Rental;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.opr.Beans.Rental.Property;
+import org.opr.Persistance.Users.AccountT;
 import org.opr.Persistance.Users.OwnerT;
 import org.opr.Persistance.VisitT;
 import org.opr.Persistance.util.AddressT;
@@ -26,15 +28,15 @@ import org.opr.Persistance.util.PictureT;
 public class PropertyT implements Serializable {
     @OneToMany(mappedBy = "PROPERTY")
     private List<VisitT> visitTs;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private OwnerT ownerT;
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private String PROPERTY_ID;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressT ADDRESS;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PictureT> pictures;
     private String TYPE;
     private short NB_BEDROOMS, NB_BATHROOMS, NB_OTHERS;
@@ -174,14 +176,14 @@ public class PropertyT implements Serializable {
     /**
      * @return the pictures
      */
-    public List<PictureT> getPictures() {
+    public List<PictureT> getPICTURES() {
         return pictures;
     }
 
     /**
      * @param pictures the pictures to set
      */
-    public void setPictures(List<PictureT> pictures) {
+    public void setPICTURES(List<PictureT> pictures) {
         this.pictures = pictures;
     }
     

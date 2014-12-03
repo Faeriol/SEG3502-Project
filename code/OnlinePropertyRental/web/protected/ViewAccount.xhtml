@@ -6,15 +6,15 @@
 
     <body>
 
-        <ui:composition template="./#{sessionScope.Account.TYPE}Template.xhtml">
+        <ui:composition template="./#{sessionScope.User.ACCOUNT.TYPE}Template.xhtml">
 
             <ui:define name="content">
                 <h1>Here is your account information</h1>
-                <h3>UserName: #{sessionScope.Account.USER_NAME}</h3>
-                <h3>First Name: #{sessionScope.Account.FIRST_NAME}</h3>
-                <h3>Last Name: #{sessionScope.Account.LAST_NAME}</h3>
-                <h3>Email: #{sessionScope.Account.EMAIL}</h3>
-                <h3>Type: #{sessionScope.Account.TYPE}</h3>
+                <h3>UserName: #{sessionScope.User.ACCOUNT.USER_NAME}</h3>
+                <h3>First Name: #{sessionScope.User.ACCOUNT.FIRST_NAME}</h3>
+                <h3>Last Name: #{sessionScope.User.ACCOUNT.LAST_NAME}</h3>
+                <h3>Email: #{sessionScope.User.ACCOUNT.EMAIL}</h3>
+                <h3>Type: #{sessionScope.User.ACCOUNT.TYPE}</h3>
             </ui:define>
 
         </ui:composition>
