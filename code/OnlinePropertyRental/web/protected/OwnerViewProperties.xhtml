@@ -19,13 +19,23 @@
                     <h:commandButton value="Lookup" type="command" actionListener="#{system.findOwnedProperty()}">
                         <f:ajax execute="" render="results"/>
                     </h:commandButton>
-                    <h:commandButton value="Cancel" type="reset" />
 
                     <h:panelGroup id="results">
                         <h:dataTable rendered="#{property.showResults}" border="2" bgcolor="yellow" id="resultTable" value="#{property.lookupResults}" var="prop"> >
                             <h:column>
                                 <f:facet name="header">Property Id</f:facet>
                                 #{prop.PROPERTY_ID}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Numero Rue</f:facet>
+                                #{prop.ADDRESS.NUMERO_RUE}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Numero Unite</f:facet>
+                                #{prop.ADDRESS.NUMERO_UNITE}
+                            </h:column><h:column>
+                                <f:facet name="header">Nom Rue</f:facet>
+                                #{prop.ADDRESS.NOM_RUE}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">NB Bedrooms</f:facet>
