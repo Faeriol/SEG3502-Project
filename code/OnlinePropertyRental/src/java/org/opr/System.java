@@ -24,6 +24,7 @@ import javax.transaction.UserTransaction;
 import org.opr.Beans.Users.User;
 import org.opr.Beans.util.Address;
 import org.opr.Persistance.DBHelper;
+import org.opr.Persistance.Rental.PropertyT;
 import org.opr.Persistance.Users.AccountT;
 import org.opr.Persistance.Users.UserT;
 
@@ -122,10 +123,11 @@ public class System {
         
     }
     
-    private List<Property> findPropertyByLocation(String location)
+    public void findPropertyByLocation()
     {
-        List<Property> pro= DBHelper.findAllProperty(em,location);
-        return pro;
+        List<PropertyT> pro= DBHelper.findAllProperty(em,address.getVille());
+        property.setLookupResults(pro);
+        
     }
 
     public void login() {

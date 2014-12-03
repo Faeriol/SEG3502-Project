@@ -27,7 +27,7 @@ public class Picture {
     /**
      * @param data the data to set
      */
-    public void setData(byte[] data) { this.setData(data); }
+    public void setData(byte[] data) { this.data = data; }
     
     public void setLookupResults(List<PictureT> results) {
         this.lookupResults = results;
