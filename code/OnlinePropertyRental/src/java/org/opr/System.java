@@ -49,6 +49,9 @@ public class System {
     private Address address;
     private List<Property> propreties;
 
+    private long upperRent;
+    private long lowerRent;
+    
     @PersistenceContext(unitName = "OnlinePropertyRentalPU")
     private EntityManager em;
     @Resource
@@ -127,6 +130,12 @@ public class System {
         }
     }
 
+    public void redirectFindProperty() {
+        if(!property.getType().isEmpty()) {
+            DBHelper.print(String.valueOf(DBHelper.findAllPropertyType(em, property.getType()).size()));
+        }
+    }
+    
     public void systemLoad() {
         if (FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo().contains("ViewProperties.xhtml")
                 || FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo().contains("DeleteProperty.xhtml")
@@ -274,5 +283,21 @@ public class System {
 
     public void setPropreties(List<Property> propreties) {
         this.propreties = propreties;
+    }
+    
+    public long getUpperRent() {
+        return upperRent;
+    }
+
+    public void setUpperRent(long upperRent) {
+        this.upperRent = upperRent;
+    }
+
+    public long getLowerRent() {
+        return lowerRent;
+    }
+
+    public void setLowerRent(long lowerRent) {
+        this.lowerRent = lowerRent;
     }
 }

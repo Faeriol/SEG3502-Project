@@ -1,14 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./customerTemplate.xhtml">
 
             <ui:define name="content">
-                content
+                <h1>Please enter one of the search criteria</h1>
+                <h:form>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Type of Property"></h:outputText>
+                        <h:selectOneMenu id="type" value="#{property.type}" required="true" requiredMessage="Please select a type of property">
+                                <f:selectItem itemValue="#{null}" itemLabel="--" />
+                                <f:selectItem itemValue="house" itemLabel="House" />
+                                <f:selectItem itemValue="apartment" itemLabel="Apartment" />
+                            </h:selectOneMenu>
+                        <h:message id="typeMsg" for="type" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+
+                        <h:outputText value="Number of Bedrooms"></h:outputText>
+                        <h:inputText id="nbOfBedrooms" value="#{property.nbBedrooms}" validatorMessage="Value must contain only numerical characters" ></h:inputText>
+                        <h:message id="nbOfBedroomsMsg" for="nbOfBedrooms" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                        
+                        <h:outputText value="Number of Bathrooms"></h:outputText>
+                        <h:inputText id="nbOfBathrooms" value="#{property.nbBathrooms}" validatorMessage="Value must contain only numerical characters" ></h:inputText>
+                        <h:message id="nbOfBathroomsMsg" for="nbOfBathrooms" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                        
+                        <h:outputText value="Number of Other Rooms"></h:outputText>
+                        <h:inputText id="nbOfOtherrooms" value="#{property.nbOthers}" validatorMessage="Value must contain only numerical characters" ></h:inputText>
+                        <h:message id="nbOfOtherroomsMsg" for="nbOfOtherrooms" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                        
+                        <h:outputText value="Upper bound on rent"></h:outputText>
+                        <h:inputText id="upperRent" value="#{system.upperRent}" validatorMessage="Value must contain only numerical characters" ></h:inputText>
+                        <h:message id="upperRentMsg" for="upperRent" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                        
+                        <h:outputText value="Lower bound on rent"></h:outputText>
+                        <h:inputText id="lowerRent" value="#{system.lowerRent}" validatorMessage="Value must contain only numerical characters" ></h:inputText>
+                        <h:message id="lowerRentMsg" for="lowerRent" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                    </h:panelGrid>
+                    <h:commandButton value="Find Property" type="command"  actionListener="#{system.redirectFindProperty()}">
+                        <f:ajax execute="type nbOfBedrooms nbOfBathrooms nbOfOtherrooms upperRent lowerRent" 
+                                render="status typeMsg nbOfBedroomsMsg nbOfBathroomsMsg nbOfOtherroomsMsg upperRentMsg lowerRentMsg"/>
+                    </h:commandButton>
+                    <h:commandButton value="Cancel" type="reset" />
+
+                    <div>
+                        <hr/>
+                        <hr/>
+                        <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{property.status}"/>
+                    </div>
+                </h:form>
             </ui:define>
 
         </ui:composition>

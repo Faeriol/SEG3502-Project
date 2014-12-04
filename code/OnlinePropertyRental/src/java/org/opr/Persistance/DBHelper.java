@@ -14,6 +14,9 @@ import org.opr.Persistance.util.*;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -379,6 +382,15 @@ public class DBHelper {
     }
 //AGENT
 
+    public static List findAllPropertyType(EntityManager em, String type) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root e = cq.from(PropertyT.class);
+        cq.select(e.get("type"));
+        Query query = em.createQuery(cq);
+        return query.getResultList();
+    }
+    
     public static AddressT findAddress(EntityManager em, String id) {
         return em.find(AddressT.class, id);
     }

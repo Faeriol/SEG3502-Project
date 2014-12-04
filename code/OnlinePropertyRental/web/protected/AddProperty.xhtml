@@ -90,23 +90,33 @@
                             <h:message id="rentMsg" for="rent" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Image 1"></h:outputText>
-                            <h:inputFile id="image1" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:inputFile id="image1" value="#{property.part}" required="true" requiredMessage="Please select an Image">
+                                <f:validator validatorId="fileUploadValidator"/>
+                            </h:inputFile>
                             <h:message id="imageMsg1" for="image1" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Image 2"></h:outputText>
-                            <h:inputFile id="image2" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:inputFile id="image2" value="#{property.part}" required="true" requiredMessage="Please select an Image">
+                                <f:validator validatorId="fileUploadValidator"/>
+                            </h:inputFile>
                             <h:message id="imageMsg2" for="image2" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Image 3"></h:outputText>
-                            <h:inputFile id="image3" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:inputFile id="image3" value="#{property.part}" required="true" requiredMessage="Please select an Image">
+                                <f:validator validatorId="fileUploadValidator"/>
+                            </h:inputFile>
                             <h:message id="imageMsg3" for="image3" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Image 4"></h:outputText>
-                            <h:inputFile id="image4" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:inputFile id="image4" value="#{property.part}" required="true" requiredMessage="Please select an Image">
+                                <f:validator validatorId="fileUploadValidator"/>
+                            </h:inputFile>
                             <h:message id="imageMsg4" for="image4" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Image 5"></h:outputText>
-                            <h:inputFile id="image5" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:inputFile id="image5" value="#{property.part}" required="true" requiredMessage="Please select an Image">
+                                <f:validator validatorId="fileUploadValidator"/>
+                            </h:inputFile>
                             <h:message id="imageMsg5" for="image5" errorStyle="color:red; display:block"/>
                         </h:panelGrid>
                         <h:commandButton value="Add" type="command"  actionListener="#{system.createProperty()}">
