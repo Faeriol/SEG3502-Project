@@ -28,7 +28,7 @@ import org.opr.Persistance.util.PictureT;
 public class PropertyT implements Serializable {
     @OneToMany(mappedBy = "PROPERTY")
     private List<VisitT> visitTs;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     private OwnerT ownerT;
     
     @Id
@@ -37,7 +37,7 @@ public class PropertyT implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private AddressT ADDRESS;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<PictureT> pictures;
+    private List<PictureT> PICTURES;
     private String TYPE;
     private short NB_BEDROOMS, NB_BATHROOMS, NB_OTHERS;
     private float RENT;
@@ -177,14 +177,14 @@ public class PropertyT implements Serializable {
      * @return the pictures
      */
     public List<PictureT> getPICTURES() {
-        return pictures;
+        return PICTURES;
     }
 
     /**
      * @param pictures the pictures to set
      */
-    public void setPICTURES(List<PictureT> pictures) {
-        this.pictures = pictures;
+    public void setPICTURES(List<PictureT> PICTURES) {
+        this.PICTURES = PICTURES;
     }
     
     public boolean matches(Property bean) {

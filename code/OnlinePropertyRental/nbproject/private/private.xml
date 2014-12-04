@@ -3,13 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Rental/PropertyT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/protected/ViewAccount.xhtml</file>
             <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/DBHelper.java</file>
-            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/template.xhtml</file>
             <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/protected/AddProperty.xhtml</file>
-            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/CreateAccount.xhtml</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/util/AddressT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/UserT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/protected/OwnerViewProperties.xhtml</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/Login.xhtml</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Beans/Users/Owner.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/OwnerT.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/protected/ownerTemplate.xhtml</file>
             <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/Persistance/Users/AccountT.java</file>
-            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/protected/ViewProperties.xhtml</file>
             <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/src/java/org/opr/System.java</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/protected/customerTemplate.xhtml</file>
+            <file>file:/Users/faeriol/Dev/SEG3502-Project/code/OnlinePropertyRental/web/BrowsePropertyByLocation.xhtml</file>
         </group>
     </open-files>
 </project-private>

@@ -1,7 +1,9 @@
 package org.opr;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +14,7 @@ import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.naming.Context;
@@ -27,6 +30,9 @@ import org.opr.Persistance.DBHelper;
 import org.opr.Persistance.Rental.PropertyT;
 import org.opr.Persistance.Users.AccountT;
 import org.opr.Persistance.Users.UserT;
+import org.opr.Persistance.util.PictureT;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 /**
  *
@@ -41,6 +47,8 @@ public class System {
     private Property property;
     @Inject
     private Address address;
+    private List<Property> propreties;
+
     @PersistenceContext(unitName = "OnlinePropertyRentalPU")
     private EntityManager em;
     @Resource
@@ -104,12 +112,56 @@ public class System {
         }
     }
 
-    private void deleteProperty(Property property){
-        // Implement
+    public void redirectUpdateProperty() {
+        PropertyT tProperty = DBHelper.findProperty(em, property.getID());
+        if (tProperty != null) {
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            session.setAttribute("UserProperty", tProperty);
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("UpdateProperty2.xhtml");
+            } catch(IOException ex) {
+                property.setStatus("Unable to redirect");
+            }
+        } else {
+            property.setStatus("Property Not Found");
+        }
     }
-    
-    private void updateProperty(Account account, Property property){
-        // Implement
+
+    public void systemLoad() {
+        if (FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo().contains("ViewProperties.xhtml")
+                || FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo().contains("DeleteProperty.xhtml")
+                || FacesContext.getCurrentInstance().getExternalContext().getRequestPathInfo().contains("UpdateProperty.xhtml")) {
+            propreties = DBHelper.findAllProperty(em);
+        } 
+    }
+
+    public StreamedContent getPropertyImage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+            return new DefaultStreamedContent();
+        } else {
+            String pictureId = context.getExternalContext().getRequestParameterMap().get("pictureID");
+            PictureT tPicture= DBHelper.findPicture(em, pictureId);
+            return new DefaultStreamedContent(new ByteArrayInputStream(tPicture.getPICTURE_DATA()));
+        }
+    }
+
+    public void deleteProperty(){
+        if (DBHelper.deleteProperty(em, utx, property.getID())) {
+            property.setStatus("Delete Successful");
+        } else {
+            property.setStatus("Delete Unsuccessful");
+        }
+    }
+
+    public void updateProperty(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        PropertyT tProperty = (PropertyT) session.getAttribute("UserProperty");
+        if(DBHelper.updateProperty(em, utx, tProperty.getPROPERTY_ID(), property)) {
+            property.setStatus("Update Successful");
+        } else {
+            property.setStatus("Update Unsuccessful");
+        }
     }
     
     private Account findAccount(String username){
@@ -123,7 +175,7 @@ public class System {
     private void viewVisitingList(Account account){
         
     }
-    
+
     public void findPropertyByLocation()
     {
         List<PropertyT> pro= DBHelper.findAllProperty(em,address.getVille());
@@ -216,5 +268,11 @@ public class System {
         }
     }
     
-    
+    public List<Property> getPropreties() {
+        return propreties;
+    }
+
+    public void setPropreties(List<Property> propreties) {
+        this.propreties = propreties;
+    }
 }

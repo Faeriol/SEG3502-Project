@@ -23,7 +23,7 @@ public class Property {
     private String ID;
     private Address  address;
     private Part part;
-    private List<Picture> photos;
+    private List<Picture> pictures;
     private String  type;
     private short nbBedrooms, nbBathrooms, nbOthers;
     private float rent;
@@ -45,8 +45,8 @@ public class Property {
     }
 
     public void setPart(Part part) {
-        if(photos == null) {
-            photos = new ArrayList<>();
+        if(pictures == null) {
+            pictures = new ArrayList<>();
         }
         
         Picture picture = new Picture();
@@ -76,7 +76,7 @@ public class Property {
             }
         }
         
-        photos.add(picture);
+        pictures.add(picture);
         this.part = null;
     }
     
@@ -102,20 +102,20 @@ public class Property {
     /**
      * @return the photos
      */
-    public List<Picture> getPhotos() {
-            return photos;
+    public List<Picture> getPictures() {
+            return pictures;
     }
 
     /**
      * @param photos the photos to set
      */
-    public void setPhotos(List<Picture> photos) {
-        this.photos = photos;
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
     }
     
-    public void addPhoto(Picture photo){
+    /*public void addPhoto(Picture photo){
         this.photos.add(photo);
-    }
+    }*/
 
     /**
      * @return the type

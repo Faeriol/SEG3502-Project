@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <body>
+
+        <ui:composition template="./ownerTemplate.xhtml">
+
+            <ui:define name="content">
+                <h1>You can update your property information by making the necessary changes and saving it</h1>
+                <f:view>
+                    <h:form>
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Type of Property"></h:outputText>
+                            <h:inputText id="type" value="#{sessionScope.UserProperty.TYPE}" disabled="true"></h:inputText>
+                            <h:outputText></h:outputText>
+                            
+                            <h:outputText value="Address of Property"></h:outputText>
+                            <h:inputText id="address" value="#{sessionScope.UserProperty.ADDRESS.NUMERO_RUE} #{sessionScope.UserProperty.ADDRESS.NOM_RUE} #{sessionScope.UserProperty.ADDRESS.NUMERO_UNITE} #{sessionScope.UserProperty.ADDRESS.VILLE} #{sessionScope.UserProperty.ADDRESS.PROVINCE} #{sessionScope.UserProperty.ADDRESS.POSTAL_CODE}" disabled="true"></h:inputText>
+                            <h:outputText></h:outputText>
+                            
+                            <h:outputText value="Number of Bedrooms"></h:outputText>
+                            <h:inputText id="nbOfBedrooms" value="#{property.nbBedrooms}" converterMessage="Value must contain only numerical characters" ></h:inputText>
+                            <h:message id="nbOfBedroomsMsg" for="nbOfBedrooms" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Number of Bathrooms"></h:outputText>
+                            <h:inputText id="nbOfBathrooms" value="#{property.nbBathrooms}" converterMessage="Value must contain only numerical characters" ></h:inputText>
+                            <h:message id="nbOfBathroomsMsg" for="nbOfBathrooms" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Number of Other Rooms"></h:outputText>
+                            <h:inputText id="nbOfOtherrooms" value="#{property.nbOthers}" converterMessage="Value must contain only numerical characters" ></h:inputText>
+                            <h:message id="nbOfOtherroomsMsg" for="nbOfOtherrooms" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Rent"></h:outputText>
+                            <h:inputText id="rent" value="#{property.rent}" converterMessage="Value must contain only numerical characters" ></h:inputText>
+                            <h:message id="rentMsg" for="rent" errorStyle="color:red; display:block"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Update" type="command"  actionListener="#{system.updateProperty()}">
+                            <f:ajax execute="nbOfBedrooms nbOfBathrooms nbOfOtherrooms rent" 
+                                    render="status nbOfBedroomsMsg nbOfBathroomsMsg nbOfOtherroomsMsg rentMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Cancel" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <hr/>
+                            <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{property.status}"/>
+                        </div>
+                    </h:form>
+                    
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

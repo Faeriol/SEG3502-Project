@@ -1,14 +1,51 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./ownerTemplate.xhtml">
 
             <ui:define name="content">
-                content
+                <h1>Please enter the property ID and click on the delete button</h1>
+                <h1>Refresh page to see changes</h1>
+                <f:view>
+                    <h:form>
+                        <h:dataTable  cellpadding="10pt" value="#{system.propreties}" var="proprety">
+                            <h:column>
+                                <h:outputText value="Property ID:"/>
+                                <h:outputText value="#{proprety.PROPERTY_ID}"/>
+                            </h:column>
+                            <h:column>
+                                <h:outputText value="Address: "/>
+                                <h:outputText value="#{proprety.ADDRESS.NUMERO_RUE} #{proprety.ADDRESS.NOM_RUE} #{proprety.ADDRESS.NUMERO_UNITE} #{proprety.ADDRESS.VILLE} #{proprety.ADDRESS.PROVINCE} #{proprety.ADDRESS.POSTAL_CODE}"/>
+                            </h:column>
+                        </h:dataTable>
+                        
+                        <h:panelGrid columns="3">
+                            <h:outputText value="Property ID"></h:outputText>
+                            <h:inputText id="propertyID" value="#{property.ID}" validatorMessage="Value must contain only numerical characters" required="true" requiredMessage="Please enter Property ID">
+                                <f:validateRegex pattern="^[0-9]+$"/>
+                            </h:inputText>
+                            <h:message id="propertyIDMsg" for="propertyID" errorStyle="color:red; display:block" styleClass="errorMessage"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Delete Property" type="command"  actionListener="#{system.deleteProperty()}">
+                            <f:ajax execute="propertyID" 
+                                    render="status propertyIDMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Cancel" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <hr/>
+                            <h:outputText  style="color:royalblue; font-size: large; font-weight: bold" id="status" value="#{property.status}"/>
+                        </div>
+                    </h:form>
+
+                </f:view>
             </ui:define>
 
         </ui:composition>

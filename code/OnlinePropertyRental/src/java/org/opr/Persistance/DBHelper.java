@@ -147,7 +147,11 @@ public class DBHelper {
     public static PropertyT findProperty(EntityManager em, String id) {
         return em.find(PropertyT.class, id);
     }
-
+    
+    public static PropertyT findProperty(EntityManager em, Property prop) {
+        return em.find(PropertyT.class, prop);
+    }
+    
     public static List findAllProperty(EntityManager em) {
         Query query = em.createQuery("SELECT P From PropertyT p");
         return query.getResultList();
@@ -183,9 +187,10 @@ public class DBHelper {
             
             tProperty.setADDRESS(tAddress);
             
-            PictureT tempPhoto = new PictureT();
+            PictureT tempPhoto = null;
             
-            for(Picture picture : prop.getPhotos()) {
+            for(Picture picture : prop.getPictures()) {
+                tempPhoto = new PictureT();
                 tempPhoto.setPICTURE_ID(picture.getID());
                 tempPhoto.setPICTURE_DATA(picture.getData());
                 tPhotos.add(tempPhoto);
@@ -200,6 +205,20 @@ public class DBHelper {
         } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             ex.printStackTrace();
         }
+        return false;
+    }
+    
+    public static boolean deleteProperty(EntityManager em, UserTransaction utx, String id){
+        try {
+            utx.begin(); 
+            PropertyT tProperty = em.find(PropertyT.class, id);
+            em.remove(tProperty);
+            utx.commit(); 
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        
         return false;
     }
     
@@ -223,6 +242,10 @@ public class DBHelper {
     }
 //ACCOUNT
 
+    public static PictureT findPicture(EntityManager em, String id) {
+        return em.find(PictureT.class, id);
+    }
+    
     public static AccountT findAccount(EntityManager em, String id) {
         return em.find(AccountT.class, id);
     }
@@ -287,16 +310,34 @@ public class DBHelper {
     public static boolean updateAccount(EntityManager em, UserTransaction utx, String id, Account uAcc) {
         try {
             utx.begin();
-            AccountT account = em.find(AccountT.class, id);
+            UserT tUser = em.find(UserT.class, id);
             if (!uAcc.getPassword().isEmpty()) {
-                account.setPASSWORD(uAcc.getPassword());
+                tUser.getACCOUNT().setPASSWORD(uAcc.getPassword());
             }
 
             if (!uAcc.getEmail().isEmpty()) {
-                account.setEMAIL(uAcc.getEmail());
+                tUser.getACCOUNT().setEMAIL(uAcc.getEmail());
             }
 
-            em.merge(account);
+            em.merge(tUser);
+            utx.commit();
+            return true;
+        } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public static boolean updateProperty(EntityManager em, UserTransaction utx, String id, Property uProp) {
+        try {
+            utx.begin();
+            PropertyT tProperty = em.find(PropertyT.class, id);
+            tProperty.setNB_BATHROOMS(uProp.getNbBathrooms());
+            tProperty.setNB_BEDROOMS(uProp.getNbBedrooms());
+            tProperty.setNB_OTHERS(uProp.getNbOthers());
+            tProperty.setRENT(uProp.getRent());
+            em.merge(tProperty);
             utx.commit();
             return true;
         } catch (IllegalArgumentException | NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {

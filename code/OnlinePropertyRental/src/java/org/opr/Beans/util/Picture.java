@@ -1,6 +1,7 @@
 package org.opr.Beans.util;
 
 import java.util.List;
+import javax.faces.bean.ManagedProperty;
 import org.opr.Persistance.util.PictureT;
 
 /**

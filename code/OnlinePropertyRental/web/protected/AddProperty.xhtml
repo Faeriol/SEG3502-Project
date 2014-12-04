@@ -93,10 +93,25 @@
                             <h:inputFile id="image1" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
                             <h:message id="imageMsg1" for="image1" errorStyle="color:red; display:block"/>
                             
+                            <h:outputText value="Image 2"></h:outputText>
+                            <h:inputFile id="image2" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:message id="imageMsg2" for="image2" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Image 3"></h:outputText>
+                            <h:inputFile id="image3" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:message id="imageMsg3" for="image3" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Image 4"></h:outputText>
+                            <h:inputFile id="image4" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:message id="imageMsg4" for="image4" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Image 5"></h:outputText>
+                            <h:inputFile id="image5" value="#{property.part}" required="true" requiredMessage="Please select an Image"></h:inputFile>
+                            <h:message id="imageMsg5" for="image5" errorStyle="color:red; display:block"/>
                         </h:panelGrid>
                         <h:commandButton value="Add" type="command"  actionListener="#{system.createProperty()}">
-                            <f:ajax execute="type streetName streetNumber apartmentNumber city province postalCode nbOfBedrooms nbOfBathrooms nbOfOtherRooms rent image1" 
-                                    render="status typeMsg streetNameMsg streetNumberMsg apartmentNumberMsg cityMsg provinceMsg postalCodeMsg nbOfBedroomsMsg nbOfBathroomsMsg nbOfOtherRoomsMsg rentMsg imageMsg1"/>
+                            <f:ajax execute="type streetName streetNumber apartmentNumber city province postalCode nbOfBedrooms nbOfBathrooms nbOfOtherRooms rent image1 image2 image3 image4 image5" 
+                                    render="status typeMsg streetNameMsg streetNumberMsg apartmentNumberMsg cityMsg provinceMsg postalCodeMsg nbOfBedroomsMsg nbOfBathroomsMsg nbOfOtherRoomsMsg rentMsg imageMsg1 imageMsg2 imageMsg3 imageMsg4 imageMsg5"/>
                         </h:commandButton>
                         <h:commandButton value="Cancel" type="reset" />
                         
